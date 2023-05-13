@@ -2,7 +2,7 @@ import "./contact.scss";
 
 export default function Contact() {
   return (
-    <div className="contact">
+    <div className="contact d-flex flex-column">
       <label htmlFor="name">Name</label>
       <input type="text" name="name" />
 
