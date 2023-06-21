@@ -1,11 +1,12 @@
 import "./project-card.scss";
-import chinardo from "../../assets/chinardo.png";
+import ProjectData from "types/project-data";
 
-export default function ProjectCard() {
+export default function ProjectCard({ name, img, desc }: ProjectData) {
   return (
     <div className="bg-warning p-2">
-      <h4>#project name</h4>
-      <img src={chinardo} alt="" className="" />
+      <h4>{name}</h4>
+      <img src={img} alt="" className="" />
+      <p>{desc}</p>
     </div>
   );
 }

@@ -3,10 +3,13 @@ import me from "../../assets/me.jpeg";
 
 export default function About() {
   return (
-    <div className="about p-5 d-flex align-items-center justify-content-between">
+    <div className="about mb-5 p-5 d-flex align-items-center justify-content-between">
       <img src={me} alt="myself" />
       <div>
-        <h1>Julian Alvarez</h1>
+        <h1>
+          Julian Alvarez <br></br>
+          {"{ poi }"}
+        </h1>
 
         <p>
           Hi there! I am a Full Stack Developer with experience in Typescript,

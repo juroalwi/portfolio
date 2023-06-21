@@ -1,3 +1,4 @@
+import Skills from "components/skills/skills";
 import React from "react";
 import "./App.scss";
 import About from "./components/about/about";
@@ -9,6 +10,7 @@ function App() {
     <div className="app d-flex flex-column align-items-stretch align-items-center">
       <About></About>
       <Projects></Projects>
+      <Skills></Skills>
       <Contact></Contact>
     </div>
   );
