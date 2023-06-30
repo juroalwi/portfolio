@@ -5,6 +5,8 @@ body {
   padding: 0;
   min-height: 100vh;
   box-sizing: border-box;
+  background-color: var(--dark);
+  color: var(--light);
   font-family: "Poppins", sans-serif;
 
   #root {
@@ -12,4 +14,11 @@ body {
     display: flex;
     justify-content: center;
   }
+}
+
+:root {
+  --dark: #222831;
+  --dark-light: #393e46;
+  --primary: #fd7014;
+  --light: #eeeeee;
 }
