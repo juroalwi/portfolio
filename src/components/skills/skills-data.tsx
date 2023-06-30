@@ -1,6 +1,7 @@
 import typescript from "assets/typescript.svg";
 import react from "assets/react.svg";
 import angular from "assets/angular.svg";
+import bootstrap from "assets/bootstrap.svg";
 import nodejs from "assets/nodejs.svg";
 
 const skillsData = [
@@ -18,6 +19,11 @@ const skillsData = [
     id: 3,
     name: "Angular",
     img: angular,
+  },
+  {
+    id: 3,
+    name: "Bootstrap",
+    img: bootstrap,
   },
   {
     id: 4,
