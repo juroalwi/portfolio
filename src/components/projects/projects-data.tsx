@@ -1,4 +1,4 @@
-import img from "assets/chinardo.png";;
+import img from "assets/chinardo.png";
 
 const projectsData = [
   {
