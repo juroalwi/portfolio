@@ -8,7 +8,7 @@ export default function About() {
       <div>
         <h1>
           Julian Alvarez <br></br>
-          {"{ poi }"}
+          {"{ Poi }"}
         </h1>
 
         <p>
