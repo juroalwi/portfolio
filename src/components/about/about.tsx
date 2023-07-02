@@ -3,24 +3,28 @@ import me from "../../assets/me.jpeg";
 
 export default function About() {
   return (
-    <div className="section about p-5 d-flex align-items-center justify-content-between">
-      <img src={me} alt="myself" />
-      <div>
-        <h1>
-          Julian Alvarez <br></br>
+    <div className="section about px-5 d-flex align-items-center justify-content-between">
+      <img src={me} alt="myself" className="col-4 px-0" />
+      <div className="col-1"></div>
+      <div className="col-7">
+        <h1 className="section-title mb-4">
+          Julian Alvarez <br className="mb-2" />
           {"{ Poi }"}
         </h1>
 
         <p>
-          Hi there! I am a Full Stack Developer with experience in Typescript,
-          Web3, Angular, React and NodeJS. I am also currently finishing my Math
-          licentiate degree. By being a Mathematician I can learn new difficult
-          stuff with ease, and thinking outside of the box doesn’t mean an
-          obstacle for me. However, abstract Mathematical sciences don’t always
-          get the chance to be applied to real world problems. That’s why diving
-          into the IT field has been one of the best decisions that I’ve made,
-          since now I can make use of my logical and analytical abilities into
-          concrete challenges from the computer science domain.
+          Hi there! <br />
+          I am a Web3 full stack developer with 1.5 years of experience in
+          building scalable, user-friendly interfaces using Typescript, React,
+          Web3, Angular, and Node.
+          <br />
+          I am also completing a Math licentiate degree, which has sharpened my
+          critical thinking and problem-solving skills. This blend of
+          mathematical background and development expertise allows me to
+          approach challenges from multiple angles and find creative solutions.
+          <br />I thrive in collaborative team environments, continuously
+          learning from my colleagues while delivering work of the highest
+          standard
         </p>
       </div>
     </div>
