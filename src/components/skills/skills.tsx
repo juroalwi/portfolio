@@ -3,7 +3,7 @@ import "./skills.scss";
 
 export default function Skills() {
   return (
-    <div className="mb-5 d-flex flex-column">
+    <div className="section">
       <h1 className="section-title">Core skills</h1>
       <ul className="w-100 align-self-center d-flex justify-content-around list-unstyled">
         {skillsData.map(({ id, name, img }) => (

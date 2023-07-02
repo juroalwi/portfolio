@@ -3,7 +3,7 @@ import me from "../../assets/me.jpeg";
 
 export default function About() {
   return (
-    <div className="about mb-5 p-5 d-flex align-items-center justify-content-between">
+    <div className="section about p-5 d-flex align-items-center justify-content-between">
       <img src={me} alt="myself" />
       <div>
         <h1>

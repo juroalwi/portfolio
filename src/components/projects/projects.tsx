@@ -4,7 +4,7 @@ import projectsData from "./projects-data";
 
 export default function Projects() {
   return (
-    <div className="mb-5">
+    <div className="section">
       <h1 className="section-title">My projects</h1>
       <ul className="d-flex justify-content-around list-unstyled">
         {projectsData.map(({ id, name, img, desc }) => (
