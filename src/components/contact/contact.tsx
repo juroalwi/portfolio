@@ -3,7 +3,7 @@ import "./contact.scss";
 export default function Contact() {
   return (
     <div className="contact d-flex flex-column">
-      <h3>Want to know more? Reach out!</h3>
+      <h1 className="section-title">Want to know more? Reach out!</h1>
 
       <label htmlFor="name">Name</label>
       <input type="text" name="name" />
