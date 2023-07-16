@@ -1,7 +1,9 @@
 .about {
-  img {
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
+  .get-in-touch-btn {
+    background: linear-gradient(
+      335deg,
+      var(--primary) 0%,
+      var(--secondary) 100%
+    );
   }
 }

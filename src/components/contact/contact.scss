@@ -1,13 +1,7 @@
 .contact {
-  .form-container {
-    width: 80%;
-  }
-
   input,
   textarea {
     padding: 8px;
-    height: 37px;
-    width: 100%;
     background-color: color-mix(in srgb, var(--dark-light) 25%, transparent);
     color: var(--light);
     border: none;
