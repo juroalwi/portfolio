@@ -3,8 +3,8 @@ import me from "../../assets/me.jpeg";
 
 export default function About() {
   return (
-    <div className="flex flex-col items-center">
-      <div className="about container mb-16 px-12 flex items-center justify-between">
+    <div className="about flex flex-col items-center">
+      <div className="container mb-24 px-12 flex items-center justify-between">
         <img src={me} alt="myself" className="w-2/6 rounded-full" />
 
         <div className="w-3/6">
@@ -31,7 +31,11 @@ export default function About() {
         </div>
       </div>
 
-      <button className="get-in-touch-btn">Get in touch</button>
+      <div className="relative bg-white mb-24">
+        <button className="get-in-touch-btn py-4 px-6 text-lg font-semibold uppercase tracking-wider hover:bg-sky-700">
+          Get in touch
+        </button>
+      </div>
     </div>
   );
 }
