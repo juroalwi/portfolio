@@ -1,9 +1,15 @@
 .about {
   .get-in-touch-btn {
     background: linear-gradient(
-      335deg,
+      70deg,
       var(--primary) 0%,
       var(--secondary) 100%
     );
+    transition: 0.4s;
+    box-shadow: 0 4px 11px #000000;
+
+    &:hover {
+      filter: brightness(83%);
+    }
   }
 }
