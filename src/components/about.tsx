@@ -1,16 +1,10 @@
-import "./about.scss";
-import me from "../../assets/me.jpeg";
-
 export default function About() {
   return (
     <div className="about flex flex-col items-center">
       <div className="container mb-24 px-12 flex items-center justify-between">
-        <img src={me} alt="myself" className="w-2/6 rounded-full" />
-
-        <div className="w-3/6">
+        <div className="w-full">
           <h1 className="section-title mb-4">
             Julian Alvarez <br className="mb-2" />
-            {"{ Poi }"}
           </h1>
 
           <p>
