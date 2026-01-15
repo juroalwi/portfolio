@@ -61,7 +61,7 @@ export default function TypedTitle({
   return (
     <h1
       ref={containerRef}
-      className="mb-10 font-[Bebas_Neue] text-5xl uppercase tracking-wider font-bold"
+      className="mb-8 font-[Bebas_Neue] text-5xl uppercase tracking-wider font-bold"
     >
       {displayedText}
       {(isTyping || isComplete) && (
