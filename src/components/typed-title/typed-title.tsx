@@ -1,21 +1,32 @@
 import { useEffect, useRef, useState } from "react";
 import "./typed-title.css";
+import { twMerge } from "tailwind-merge";
 
 interface TypedTitleProps {
   children: string;
   typingSpeedMs?: number;
+  disabled?: boolean;
+  caretHidden?: boolean;
+  className?: string;
+  onFinishTyping?: () => void;
 }
 
 export default function TypedTitle({
   children: text,
   typingSpeedMs = 50,
+  disabled,
+  caretHidden,
+  className,
+  onFinishTyping,
 }: TypedTitleProps) {
-  const [displayedText, setDisplayedText] = useState("");
+  const [displayedText, setDisplayedText] = useState("\u00A0");
   const [isTyping, setIsTyping] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const containerRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
+    if (disabled) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -41,10 +52,10 @@ export default function TypedTitle({
         observer.unobserve(currentRef);
       }
     };
-  }, [isTyping, isComplete]);
+  }, [disabled, isTyping, isComplete]);
 
   useEffect(() => {
-    if (!isTyping) return;
+    if (disabled || !isTyping) return;
 
     if (displayedText.length < text.length) {
       const timer = setTimeout(() => {
@@ -55,20 +66,25 @@ export default function TypedTitle({
     } else {
       setIsTyping(false);
       setIsComplete(true);
+      onFinishTyping?.();
     }
   }, [displayedText, isTyping, isComplete, text, typingSpeedMs]);
 
   return (
     <h1
       ref={containerRef}
-      className="mb-8 font-[Bebas_Neue] text-5xl uppercase tracking-wider font-bold"
+      className={twMerge(
+        "mb-8 font-[Bebas_Neue] text-5xl uppercase tracking-wider font-bold",
+        className
+      )}
     >
       {displayedText}
-      {(isTyping || isComplete) && (
+      {(isTyping || isComplete) && !caretHidden && (
         <span
-          className={`inline-block ml-0.5 text-primary ${
-            isComplete ? "blink" : ""
-          }`}
+          className={twMerge(
+            "inline-block ml-0.5 text-primary",
+            isComplete && "blink"
+          )}
         >
           |
         </span>
