@@ -8,17 +8,15 @@ interface P5SketchProps {
 
 export default function P5Sketch({ sketch, className }: P5SketchProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const p5Ref = useRef<p5 | null>(null);
 
   useEffect(() => {
-    if (containerRef.current && !p5Ref.current) {
-      p5Ref.current = new p5(sketch, containerRef.current);
-    }
+    if (!containerRef.current) return;
+
+    const p5Ref = new p5(sketch, containerRef.current);
 
     return () => {
-      if (p5Ref.current) {
-        p5Ref.current.remove();
-        p5Ref.current = null;
+      if (p5Ref) {
+        p5Ref.remove();
       }
     };
   }, [sketch]);

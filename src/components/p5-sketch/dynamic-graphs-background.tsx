@@ -10,6 +10,7 @@ type Dot = {
 };
 
 const sketch = (p: p5) => {
+  const DOTS_LIMIT = 40;
   let dots: Dot[] = [];
 
   p.setup = () => {
@@ -18,6 +19,7 @@ const sketch = (p: p5) => {
     // After canvas is created, resize to container
     setTimeout(() => {
       const container = (p as any).canvas?.parentElement;
+      console.log("container", container);
       if (container) {
         p.resizeCanvas(container.offsetWidth, container.offsetHeight);
       }
@@ -34,7 +36,7 @@ const sketch = (p: p5) => {
   p.draw = () => {
     p.background(255);
 
-    if (p.random() < 0.05) {
+    if (dots.length < DOTS_LIMIT) {
       const side = p.floor(p.random(4)); // 0: top, 1: right, 2: bottom, 3: left
       let x, y, vx, vy;
 
@@ -98,10 +100,11 @@ const sketch = (p: p5) => {
 
       return !shouldRemove;
     });
+    console.log("dots amount", dots.length);
   };
 };
 
-export default function LocalGraphsSketch({
+export default function DynamicGraphsBackground({
   className,
 }: {
   className?: string;
