@@ -3,13 +3,22 @@ import Skills from "/components/skills";
 import About from "components/about";
 import Contact from "/components/contact";
 import Projects from "/components/projects";
-import LocalGraphsSketch from "components/p5-sketch/local-graphs-sketch";
+import DynamicGraphsBackground from "/components/p5-sketch/dynamic-graphs-background";
+import { WrenchIcon } from "./assets/icons/WrenchIcon";
+import { HouseIcon } from "./assets/icons/HouseIcon";
+import { PortfolioIcon } from "./assets/icons/PortfolioIcon";
+import { SendIcon } from "./assets/icons/SendIcon";
 
 const sections = [
-  { id: "about", name: "About", component: About },
-  { id: "projects", name: "Projects", component: Projects },
-  { id: "skills", name: "Skills", component: Skills },
-  { id: "contact", name: "Contact", component: Contact },
+  { id: "about", name: "About", component: About, icon: HouseIcon },
+  {
+    id: "projects",
+    name: "Projects",
+    component: Projects,
+    icon: PortfolioIcon,
+  },
+  { id: "skills", name: "Skills", component: Skills, icon: WrenchIcon },
+  { id: "contact", name: "Contact", component: Contact, icon: SendIcon },
 ];
 
 function App() {
@@ -56,30 +65,37 @@ function App() {
 
   return (
     <>
-      <LocalGraphsSketch className="fixed inset-0" />
+      <DynamicGraphsBackground className="fixed inset-0" />
 
       <div className="fixed inset-0 backdrop-blur-[1px]"></div>
 
-      <div className="fixed left-8 top-1/2 -translate-y-1/2 z-1 flex flex-col gap-4">
-        {sections.map((section, index) => (
-          <button
-            key={section.id}
-            onClick={() => handleSidebarClick(index)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              currentSection === index
-                ? "bg-(--primary) scale-125"
-                : "bg-(--dark-light) hover:bg-(--primary)/50"
-            }`}
-            aria-label={section.name}
-          />
-        ))}
+      <div className="fixed left-8 top-1/2 -translate-y-1/2 z-1 flex flex-col justify-between  h-[50%] max-h-[1000px]">
+        {sections.map((section, index) => {
+          const Icon = section.icon;
+          return (
+            <button
+              className="p-4 group h-full outline-none"
+              key={section.id}
+              onClick={() => handleSidebarClick(index)}
+              aria-label={section.name}
+            >
+              <Icon
+                className={`w-8 h-8 transiton-all duration-100 ${
+                  currentSection === index
+                    ? "stroke-primary scale-125 translate-x-2"
+                    : "stroke-dark group-hover:stroke-dark/60"
+                }`}
+              />
+            </button>
+          );
+        })}
       </div>
 
       <div
         ref={(el) => {
           containerRef.current = el;
         }}
-        className="w-[55%] max-w-[1000px] h-screen overflow-y-hidden z-1 no-scrollbar"
+        className="relative w-[50%] max-w-[1000px] mx-auto h-screen overflow-y-hidden z-1 no-scrollbar"
       >
         {sections.map((section, index) => {
           const Component = section.component;
@@ -89,7 +105,7 @@ function App() {
               ref={(el) => {
                 sectionRefs.current[index] = el;
               }}
-              className="h-screen w-full flex items-center justify-center px-8 snap-start"
+              className="h-screen w-full flex items-center justify-center"
             >
               <Component />
             </div>
