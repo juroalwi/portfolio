@@ -1,4 +1,3 @@
-import React from "react";
 import p5 from "p5";
 import P5Sketch from "./p5-sketch";
 
@@ -14,8 +13,6 @@ const exampleSketch = (p: p5) => {
   let dots: Dot[] = [];
 
   p.setup = () => {
-    // Canvas will be sized by CSS (100% width/height)
-    // Use a default size, CSS will scale it
     p.createCanvas(800, 800);
 
     // After canvas is created, resize to container
@@ -76,7 +73,7 @@ const exampleSketch = (p: p5) => {
       dot.x += dot.vx;
       dot.y += dot.vy;
 
-      p.fill(80, 80, 80, 200);
+      p.fill(180, 180, 180, 200);
       p.noStroke();
       p.ellipse(dot.x, dot.y, dot.size, dot.size);
 
@@ -86,7 +83,7 @@ const exampleSketch = (p: p5) => {
         const distance = p.dist(dot.x, dot.y, otherDot.x, otherDot.y);
         const quotient = distance / 200;
         if (quotient <= 1) {
-          p.stroke(120, 120, 120, 200 * (1 - quotient) ** 2);
+          p.stroke(180, 180, 180, 200 * (1 - quotient) ** 2);
           p.line(dot.x, dot.y, otherDot.x, otherDot.y);
         }
       }
@@ -109,9 +106,5 @@ export default function LocalGraphsSketch({
 }: {
   className?: string;
 }) {
-  return (
-    <div className="p5-sketch-container">
-      <P5Sketch sketch={exampleSketch} className={className} />
-    </div>
-  );
+  return <P5Sketch sketch={exampleSketch} className={className} />;
 }

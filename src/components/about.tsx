@@ -1,11 +1,11 @@
+import TypedTitle from "./typed-title/typed-title";
+
 export default function About() {
   return (
     <div className="about flex flex-col items-center">
       <div className="container mb-24 px-12 flex items-center justify-between">
         <div className="w-full">
-          <h1 className="section-title mb-4">
-            Julian Alvarez <br className="mb-2" />
-          </h1>
+          <TypedTitle>Julian Alvarez</TypedTitle>
 
           <p>
             Hi there! <br />
