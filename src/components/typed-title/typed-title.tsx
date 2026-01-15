@@ -65,7 +65,11 @@ export default function TypedTitle({
     >
       {displayedText}
       {(isTyping || isComplete) && (
-        <span className={`inline-block ml-0.5 ${isComplete ? "blink" : ""}`}>
+        <span
+          className={`inline-block ml-0.5 text-primary ${
+            isComplete ? "blink" : ""
+          }`}
+        >
           |
         </span>
       )}
