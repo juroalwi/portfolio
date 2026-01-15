@@ -9,7 +9,7 @@ type Dot = {
   size: number;
 };
 
-const exampleSketch = (p: p5) => {
+const sketch = (p: p5) => {
   let dots: Dot[] = [];
 
   p.setup = () => {
@@ -106,5 +106,5 @@ export default function LocalGraphsSketch({
 }: {
   className?: string;
 }) {
-  return <P5Sketch sketch={exampleSketch} className={className} />;
+  return <P5Sketch sketch={sketch} className={className} />;
 }
