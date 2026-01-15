@@ -1,5 +1,5 @@
 import skillsData from "./skills-data";
-import "./skills.scss";
+import "./skills.css";
 
 export default function Skills() {
   return (

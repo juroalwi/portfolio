@@ -3,10 +3,10 @@
   border-radius: 1px;
   box-shadow: 0 4px 11px #000000;
   background-color: var(--primary);
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+.card-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

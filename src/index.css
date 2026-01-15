@@ -1,10 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 body {
   margin: 0;
@@ -15,12 +12,12 @@ body {
   background-attachment: fixed;
   color: var(--dark-light);
   font-family: "Poppins", sans-serif;
+}
 
-  #root {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-  }
+body #root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
 
 :root {
@@ -28,9 +25,22 @@ body {
   --dark: #15191f;
   --dark-soft: #222831;
   --dark-light: #393e46;
-  // --primary: #ff6f00;
-  // --primary: #f54733;
+  /* --primary: #ff6f00; */
+  /* --primary: #f54733; */
   --primary: #f55753;
   --secondary: #f57733;
   --light: #eeeeee;
+}
+
+.section {
+  margin-bottom: 124px;
+}
+
+.section-title {
+  margin-bottom: 42px;
+  font-family: "Bebas Neue";
+  font-size: 52px;
+  text-transform: uppercase;
+  letter-spacing: 1.7px;
+  color: var(--primary);
 }

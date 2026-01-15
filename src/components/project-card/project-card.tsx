@@ -1,4 +1,4 @@
-import "./project-card.scss";
+import "./project-card.css";
 import ProjectData from "types/project-data";
 
 export default function ProjectCard({ name, img, desc }: ProjectData) {
