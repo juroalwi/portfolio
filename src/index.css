@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue:wght@200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 body {
@@ -9,15 +8,24 @@ body {
   min-height: 100vh;
   box-sizing: border-box;
   background-color: var(--background);
-  background-attachment: fixed;
   color: var(--dark-light);
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", "Babas Neue" sans-serif;
 }
 
 body #root {
   min-height: 100vh;
   display: flex;
   justify-content: center;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }
 
 :root {
@@ -30,17 +38,4 @@ body #root {
   --primary: #f55753;
   --secondary: #f57733;
   --light: #eeeeee;
-}
-
-.section {
-  margin-bottom: 124px;
-}
-
-.section-title {
-  margin-bottom: 42px;
-  font-family: "Bebas Neue";
-  font-size: 52px;
-  text-transform: uppercase;
-  letter-spacing: 1.7px;
-  color: var(--primary);
 }
