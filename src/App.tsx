@@ -80,10 +80,10 @@ function App() {
               aria-label={section.name}
             >
               <Icon
-                className={`w-8 h-8 transiton-all duration-100 ${
+                className={`w-8 h-8 transiton-all duration-200 ${
                   currentSection === index
-                    ? "stroke-primary scale-125 translate-x-2"
-                    : "stroke-dark group-hover:stroke-dark/60"
+                    ? "stroke-primary scale-150 translate-x-2"
+                    : "stroke-dark group-hover:stroke-primary/50 group-hover:scale-110"
                 }`}
               />
             </button>
@@ -95,7 +95,7 @@ function App() {
         ref={(el) => {
           containerRef.current = el;
         }}
-        className="relative w-[50%] max-w-[1000px] mx-auto h-screen overflow-y-hidden z-1 no-scrollbar"
+        className="relative w-[55%] max-w-[1000px] mx-auto h-screen overflow-y-hidden z-1 no-scrollbar"
       >
         {sections.map((section, index) => {
           const Component = section.component;
