@@ -37,12 +37,14 @@ export default function About() {
         </FadeIn>
       </div>
 
-      <div className="relative rounded-full bg-lime-100/60 flex w-84 h-84 shrink-0 shadow-lg">
-        <img
-          className="absolute bottom-3 right-3 rounded-full bg-blue-50 w-84 h-84 object-contain aspect-square shadow-lg"
-          src={poi}
-        />
-      </div>
+      <FadeIn delay={50} duration={800}>
+        <div className="relative rounded-full bg-lime-100/60 flex w-84 h-84 shrink-0 shadow-lg">
+          <img
+            className="absolute bottom-3 right-3 rounded-full bg-blue-50 w-84 h-84 object-contain aspect-square shadow-lg"
+            src={poi}
+          />
+        </div>
+      </FadeIn>
     </div>
   );
 }
