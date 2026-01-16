@@ -69,48 +69,50 @@ function App() {
 
       <div className="fixed inset-0 backdrop-blur-[1px]"></div>
 
-      <div className="fixed left-8 top-1/2 -translate-y-1/2 z-1 flex flex-col justify-between  h-[50%] max-h-[1000px]">
-        {sections.map((section, index) => {
-          const Icon = section.icon;
-          return (
-            <button
-              className="p-4 group h-full outline-none"
-              key={section.id}
-              onClick={() => handleSidebarClick(index)}
-              aria-label={section.name}
-            >
-              <Icon
-                className={`w-8 h-8 transiton-all duration-200 ${
-                  currentSection === index
-                    ? "stroke-primary scale-150 translate-x-2"
-                    : "stroke-dark group-hover:stroke-primary/50 group-hover:scale-110"
-                }`}
-              />
-            </button>
-          );
-        })}
-      </div>
+      <div className="flex relative z-1 h-screen">
+        <div className="flex flex-col h-[60%] p-4 self-center max-h-[1000px]">
+          {sections.map((section, index) => {
+            const Icon = section.icon;
+            return (
+              <button
+                className="p-4 group h-full outline-none"
+                key={section.id}
+                onClick={() => handleSidebarClick(index)}
+                aria-label={section.name}
+              >
+                <Icon
+                  className={`w-8 h-8 transiton-all duration-200 ${
+                    currentSection === index
+                      ? "stroke-primary scale-150 translate-x-2"
+                      : "stroke-dark group-hover:stroke-primary/50 group-hover:scale-110"
+                  }`}
+                />
+              </button>
+            );
+          })}
+        </div>
 
-      <div
-        ref={(el) => {
-          containerRef.current = el;
-        }}
-        className="relative w-[55%] max-w-[1000px] mx-auto h-screen overflow-y-hidden z-1 no-scrollbar"
-      >
-        {sections.map((section, index) => {
-          const Component = section.component;
-          return (
-            <div
-              key={section.id}
-              ref={(el) => {
-                sectionRefs.current[index] = el;
-              }}
-              className="h-screen w-full flex items-center justify-center"
-            >
-              <Component />
-            </div>
-          );
-        })}
+        <div
+          ref={(el) => {
+            containerRef.current = el;
+          }}
+          className="h-screen overflow-y-hidden no-scrollbar w-full"
+        >
+          {sections.map((section, index) => {
+            const Component = section.component;
+            return (
+              <div
+                key={section.id}
+                ref={(el) => {
+                  sectionRefs.current[index] = el;
+                }}
+                className="h-screen flex items-center justify-center"
+              >
+                <Component />
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );
