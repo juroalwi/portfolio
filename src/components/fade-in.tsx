@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 export const FadeIn = ({
   children,
   delay = 0,
-  duration = 500,
+  duration = 600,
   from = "bottom",
   className,
 }: {
@@ -69,10 +69,9 @@ export const FadeIn = ({
       )}
       style={{
         transitionDuration: `${duration}ms`,
-        transitionDelay: isVisible ? `${delay}ms` : "0ms",
+        transitionDelay: `${delay}ms`,
       }}
     >
-      {" "}
       {children}
     </div>
   );
