@@ -25,7 +25,7 @@ export default function About() {
           Full stack developer & Mathematician
         </TypedTitle>
 
-        <FadeIn delay={150} duration={800}>
+        <FadeIn delay={200}>
           <p className="text-lg">
             More than 3 years of experience building scalable and efficient
             systems using Typescript, NestJS, PostgreSQL and React.
@@ -37,10 +37,19 @@ export default function About() {
         </FadeIn>
       </div>
 
-      <FadeIn delay={50} duration={800}>
-        <div className="relative rounded-full bg-lime-100/60 flex w-84 h-84 shrink-0 shadow-lg">
+      <FadeIn delay={100}>
+        <div className="relative w-84 h-84 shrink-0">
+          <div
+            className="absolute inset-0 rounded-full bg-primary/40 shadow-lg"
+            style={{
+              maskImage:
+                "radial-gradient(circle 168px at calc(50% - 12px) calc(50% - 12px), transparent 168px, black 169px)",
+              WebkitMaskImage:
+                "radial-gradient(circle 168px at calc(50% - 12px) calc(50% - 12px), transparent 168px, black 169px)",
+            }}
+          />
           <img
-            className="absolute bottom-3 right-3 rounded-full bg-blue-50 w-84 h-84 object-contain aspect-square shadow-lg"
+            className="absolute bottom-3 right-3 rounded-full w-84 bg-secondary/40 h-84 object-contain aspect-square z-10 shadow-lg"
             src={poi}
           />
         </div>
