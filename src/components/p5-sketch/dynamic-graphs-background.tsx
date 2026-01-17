@@ -7,11 +7,13 @@ type Dot = {
   vx: number;
   vy: number;
   size: number;
+  spawnedAtMs: number;
 };
 
 const sketch = (p: p5) => {
   const DOTS_LIMIT = 40;
   const INTERACTION_DISTANCE = 200;
+  const MIN_TTL_TO_INTERACT = 1000;
   let dots: Dot[] = [];
 
   p.setup = () => {
@@ -36,32 +38,27 @@ const sketch = (p: p5) => {
 
   p.draw = () => {
     p.background(255);
-    const topBorder = -INTERACTION_DISTANCE / 2;
-    const rightBorder = p.width + INTERACTION_DISTANCE / 2;
-    const bottomBorder = p.height + INTERACTION_DISTANCE / 2;
-    const leftBorder = -INTERACTION_DISTANCE / 2;
-
     if (dots.length < DOTS_LIMIT) {
       const side = p.floor(p.random(4)); // 0: top, 1: right, 2: bottom, 3: left
       let x, y, vx, vy;
 
       if (side === 0) {
         x = p.random(p.width);
-        y = topBorder;
+        y = 0;
         vx = p.random(-1, 1);
         vy = p.random(0.5, 2);
       } else if (side === 1) {
-        x = rightBorder;
+        x = p.width;
         y = p.random(p.height);
         vx = p.random(-2, -0.5);
         vy = p.random(-1, 1);
       } else if (side === 2) {
         x = p.random(p.width);
-        y = bottomBorder;
+        y = p.height;
         vx = p.random(-1, 1);
         vy = p.random(-2, -0.5);
       } else {
-        x = leftBorder;
+        x = 0;
         y = p.random(p.height);
         vx = p.random(0.5, 2);
         vy = p.random(-1, 1);
@@ -73,6 +70,7 @@ const sketch = (p: p5) => {
         vx,
         vy,
         size: p.random(5, 10),
+        spawnedAtMs: Date.now(),
       });
     }
 
@@ -87,10 +85,20 @@ const sketch = (p: p5) => {
       for (const otherDot of dots) {
         if (dot === otherDot) continue;
 
-        const distance = p.dist(dot.x, dot.y, otherDot.x, otherDot.y);
-        const quotient = distance / INTERACTION_DISTANCE;
-        if (quotient <= 1) {
-          p.stroke(180, 180, 180, 200 * (1 - quotient) ** 2);
+        const ttlFactor =
+          (Math.min(MIN_TTL_TO_INTERACT, Date.now() - otherDot.spawnedAtMs) /
+            MIN_TTL_TO_INTERACT) *
+          (Math.min(MIN_TTL_TO_INTERACT, Date.now() - dot.spawnedAtMs) /
+            MIN_TTL_TO_INTERACT);
+        const distanceQuotient =
+          p.dist(dot.x, dot.y, otherDot.x, otherDot.y) / INTERACTION_DISTANCE;
+        if (distanceQuotient <= 1) {
+          p.stroke(
+            180,
+            180,
+            180,
+            200 * ttlFactor * (1 - distanceQuotient) ** 2
+          );
           p.line(dot.x, dot.y, otherDot.x, otherDot.y);
         }
       }
@@ -98,14 +106,13 @@ const sketch = (p: p5) => {
 
     dots = dots.filter((dot) => {
       const shouldRemove =
-        dot.x < -dot.size + leftBorder ||
-        dot.x > dot.size + rightBorder ||
-        dot.y < -dot.size + topBorder ||
-        dot.y > dot.size + bottomBorder;
+        dot.x < -dot.size - INTERACTION_DISTANCE ||
+        dot.x > dot.size + p.width + INTERACTION_DISTANCE ||
+        dot.y < -dot.size - INTERACTION_DISTANCE ||
+        dot.y > dot.size + p.height + INTERACTION_DISTANCE;
 
       return !shouldRemove;
     });
-    console.log("dots amount", dots.length);
   };
 };
 
