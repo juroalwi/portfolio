@@ -59,7 +59,7 @@ export default function Projects() {
         </div>
 
         <div className="row-span-3 col-span-4">
-          <FadeIn delay={100} from="top" className="h-full w-full">
+          <FadeIn delay={50} from="top" className="h-full w-full">
             <ProjectCard
               id={projects[1].id}
               name={projects[1].name}
@@ -70,7 +70,7 @@ export default function Projects() {
         </div>
 
         <div className="row-span-3 col-span-3">
-          <FadeIn delay={200} from="top" className="h-full w-full">
+          <FadeIn delay={100} from="top" className="h-full w-full">
             <ProjectCard
               id={projects[2].id}
               name={projects[2].name}
@@ -81,7 +81,7 @@ export default function Projects() {
         </div>
 
         <div className="row-span-3 col-span-6">
-          <FadeIn delay={300} from="right" className="h-full w-full">
+          <FadeIn delay={150} from="right" className="h-full w-full">
             <ProjectCard
               id={projects[3].id}
               name={projects[3].name}
