@@ -1,55 +1,81 @@
 import typescript from "assets/typescript.svg";
-import react from "assets/react.svg";
-import angular from "assets/angular.svg";
-import bootstrap from "assets/bootstrap.svg";
 import nodejs from "assets/nodejs.svg";
+import nestjs from "assets/nestjs.svg";
+import postgresql from "assets/postgresql.svg";
+import redis from "assets/redis.svg";
+import react from "assets/react.svg";
+import html from "assets/html.svg";
+import css from "assets/css.svg";
+import tailwind from "assets/tailwind.svg";
+import web3 from "assets/web3.svg";
 import TypedTitle from "./typed-title/typed-title";
+import { FadeIn } from "./fade-in";
 
 const skillsData = [
   {
-    id: 1,
     name: "Typescript",
     img: typescript,
   },
   {
-    id: 2,
+    name: "NodeJS",
+    img: nodejs,
+  },
+  {
+    name: "NestJS",
+    img: nestjs,
+  },
+  {
+    name: "PostgreSQL",
+    img: postgresql,
+  },
+  {
+    name: "Redis",
+    img: redis,
+  },
+  {
     name: "React",
     img: react,
   },
   {
-    id: 3,
-    name: "Angular",
-    img: angular,
+    name: "HTML",
+    img: html,
   },
   {
-    id: 3,
-    name: "Bootstrap",
-    img: bootstrap,
+    name: "CSS",
+    img: css,
   },
   {
-    id: 4,
-    name: "Node",
-    img: nodejs,
+    name: "Tailwind",
+    img: tailwind,
+  },
+  {
+    name: "Web3",
+    img: web3,
   },
 ];
 export default function Skills() {
   return (
-    <div className="w-full">
-      <TypedTitle>Core skills</TypedTitle>
-      <ul className="w-full flex justify-start list-unstyled gap-16">
-        {skillsData.map(({ id, name, img }) => (
-          <li key={id} className="flex items-center">
-            <div className="flex flex-col items-center gap-2">
-              <img
-                className="w-16 aspect-square object-contain"
-                src={img}
-                alt={name}
-              />
-              <div className="h-full grow">
-                <h5 className="text-center">{name}</h5>
+    <div className="max-w-[1200px] w-[60%]">
+      <TypedTitle className="mb-16">Core skills</TypedTitle>
+      <ul className="w-full grid grid-cols-5 grid-rows-2 list-unstyled gap-x-16 gap-y-8">
+        {skillsData.map(({ name, img }, index) => (
+          <FadeIn
+            delay={50 * (index % 5) + (index < 5 ? 0 : 100)}
+            duration={800}
+          >
+            <li key={index} className="flex items-center">
+              <div className="flex flex-col items-center gap-2">
+                <img
+                  className="w-20 h-20 aspect-square object-contain"
+                  src={img}
+                  alt={name}
+                />
+                <div className="h-full grow">
+                  <h5 className="text-center">{name}</h5>
+                </div>
               </div>
-            </div>
-          </li>
+            </li>
+          </FadeIn>
         ))}
       </ul>
     </div>
