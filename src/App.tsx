@@ -8,6 +8,7 @@ import { WrenchIcon } from "./assets/icons/WrenchIcon";
 import { HouseIcon } from "./assets/icons/HouseIcon";
 import { PortfolioIcon } from "./assets/icons/PortfolioIcon";
 import { SendIcon } from "./assets/icons/SendIcon";
+import { twMerge } from "tailwind-merge";
 
 const sections = [
   { id: "about", name: "About", component: About, icon: HouseIcon },
@@ -67,7 +68,7 @@ function App() {
     <>
       <DynamicGraphsBackground className="fixed inset-0" />
 
-      <div className="fixed inset-0 backdrop-blur-[1px]"></div>
+      <div className="fixed inset-0 backdrop-blur-[1.5px]"></div>
 
       <div className="flex relative z-1 h-screen">
         <div className="flex flex-col h-[60%] p-4 self-center max-h-[1000px]">
@@ -75,17 +76,18 @@ function App() {
             const Icon = section.icon;
             return (
               <button
-                className="p-4 group h-full outline-none"
+                className="p-4 group h-full outline-none cursor-pointer"
                 key={section.id}
                 onClick={() => handleSidebarClick(index)}
                 aria-label={section.name}
               >
                 <Icon
-                  className={`w-8 h-8 transiton-all duration-200 ${
+                  className={twMerge(
+                    "w-8 h-8 transiton-all duration-200",
                     currentSection === index
                       ? "stroke-primary scale-150 translate-x-2"
-                      : "stroke-dark group-hover:stroke-primary/50 group-hover:scale-110"
-                  }`}
+                      : "stroke-dark group-hover:scale-125"
+                  )}
                 />
               </button>
             );
