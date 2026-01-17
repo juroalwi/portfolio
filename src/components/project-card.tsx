@@ -19,13 +19,13 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <div
-      className="h-full w-full relative group rounded-xl shadow-lg overflow-hidden bg-light hover:shadow-xl transition-shadow duration-300 cursor-pointer"
+      className="h-full w-full relative group rounded-xl shadow-lg overflow-hidden cursor-pointer"
       key={id}
     >
       <div className="absolute inset-0">
         <img
           src={img}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
           alt={name}
         />
         <div className="absolute inset-0 bg-linear-to-t from-dark/80 via-dark/40 to-transparent" />
