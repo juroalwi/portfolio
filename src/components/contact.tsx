@@ -1,29 +1,107 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { FadeIn } from "./fade-in";
 import TypedTitle from "./typed-title/typed-title";
+import { usePopup } from "/hooks/use-popup";
+import { Spinner } from "./spinner";
 
 export default function Contact() {
+  const { open } = usePopup();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      const res = await fetch("https://formspree.io/f/xkoooklq", {
+        method: "POST",
+        body: JSON.stringify({ name, email, subject, message }),
+        headers: {
+          Accept: "application/json",
+        },
+      });
+
+      const result = await res.json();
+
+      if (result.error) {
+        if (Array.isArray(result.errors)) {
+          if (
+            result.errors.some(
+              (err: { field: string; message: string }) => err.field === "email"
+            )
+          ) {
+            throw new Error(`Invalid email`);
+          }
+        }
+        throw new Error(result.error);
+      }
+
+      open("Message delivered", "success");
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+    } catch (err) {
+      console.error("Failed to send message", err);
+      open("Something went wrong, please try again later", "error");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="w-[60%] max-w-[1000px]">
       <TypedTitle className="mb-12">Want to know more? Reach out!</TypedTitle>
 
       <FadeIn delay={100}>
-        <form className="flex flex-col gap-8">
+        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
           <div className="flex gap-8">
-            <FormField id="name" label="Name" type="text" />
-            <FormField id="email" label="Email" type="email" />
+            <FormField
+              id="name"
+              label="Name"
+              value={name}
+              onChange={(v) => setName(v)}
+            />
+            <FormField
+              id="email"
+              label="Email"
+              required
+              value={email}
+              onChange={(v) => setEmail(v)}
+            />
           </div>
 
-          <FormField id="subject" label="Subject" type="text" />
+          <FormField
+            id="subject"
+            label="Subject"
+            value={subject}
+            onChange={(v) => setSubject(v)}
+          />
 
-          <FormField id="message" label="Message" type="textarea" />
+          <FormField
+            id="message"
+            label="Message"
+            required
+            isTextArea
+            value={message}
+            onChange={(v) => setMessage(v)}
+          />
 
           <button
             type="submit"
-            className="px-10 py-3 ml-auto mt-2 bg-dark text-light rounded-full font-medium transition-all duration-200 hover:bg-dark/90 cursor-pointer outline-none"
+            disabled={isSubmitting}
+            className={twMerge(
+              "ml-auto mt-2 bg-dark text-light rounded-full font-medium transition-all duration-200 outline-none w-28 h-12 items-center flex justify-center",
+              isSubmitting
+                ? "cursor-not-allowed bg-dark/90"
+                : "cursor-pointer hover:bg-dark/90 "
+            )}
           >
-            Send
+            {isSubmitting ? <Spinner fill="white" /> : "Send"}
           </button>
         </form>
       </FadeIn>
@@ -34,20 +112,20 @@ export default function Contact() {
 const FormField = ({
   id,
   label,
-  type = "text",
+  value,
+  onChange,
+  required,
+  isTextArea,
 }: {
   id: string;
   label: string;
-  type?: "text" | "email" | "textarea";
+  value: string;
+  onChange: (v: string) => void;
+  required?: boolean;
+  isTextArea?: boolean;
 }) => {
   const [isFocused, setIsFocused] = useState(false);
-  const [hasValue, setHasValue] = useState(false);
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setHasValue(e.target.value.length > 0);
-  };
+  const hasValue = !!value;
 
   const borderClasses = [
     "border-b  w-full relative",
@@ -62,7 +140,7 @@ const FormField = ({
       : "translate-y-0 text-base text-dark/60",
   ];
 
-  if (type === "textarea") {
+  if (isTextArea) {
     return (
       <div className={twMerge(borderClasses)}>
         <label htmlFor={id} className={twMerge("top-3", labelClasses)}>
@@ -71,9 +149,11 @@ const FormField = ({
         <textarea
           id={id}
           name={id}
+          value={value}
+          onChange={(e) => onChange(e.currentTarget.value)}
+          required={required}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          onChange={handleChange}
           rows={6}
           className={twMerge("resize-none w-full focus:outline-none")}
         />
@@ -89,10 +169,11 @@ const FormField = ({
       <input
         id={id}
         name={id}
-        type={type}
+        value={value}
+        onChange={(e) => onChange(e.currentTarget.value)}
+        required={required}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        onChange={handleChange}
         className="h-full w-full focus:outline-none transition-all duration-300"
       />
     </div>
