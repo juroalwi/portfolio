@@ -9,6 +9,7 @@ import { PortfolioIcon } from "./assets/icons/PortfolioIcon";
 import { SendIcon } from "./assets/icons/SendIcon";
 import { PopupProvider } from "./providers/popup-provider";
 import { SideNavigation } from "./components/side-navigation";
+import { ScreenSizeProvider } from "./providers/screen-size-provider";
 
 const sections = [
   { name: "About", component: About, icon: HouseIcon },
@@ -19,15 +20,17 @@ const sections = [
 
 function App() {
   return (
-    <PopupProvider>
-      <DynamicGraphsBackground className="fixed inset-0" />
+    <ScreenSizeProvider>
+      <PopupProvider>
+        <DynamicGraphsBackground className="fixed inset-0" />
 
-      <div className="fixed inset-0 backdrop-blur-[1.2px]"></div>
+        <div className="fixed inset-0 backdrop-blur-[1.2px]"></div>
 
-      <div className="relative max-w-[3000px] text-sm lg:text-base">
-        <SideNavigation sections={sections} />
-      </div>
-    </PopupProvider>
+        <div className="relative w-full mx-auto max-w-[600px] lg:max-w-[2000px]">
+          <SideNavigation sections={sections} />
+        </div>
+      </PopupProvider>
+    </ScreenSizeProvider>
   );
 }
 

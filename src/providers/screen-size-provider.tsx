@@ -2,6 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from "react";
 
 type ScreenSizeContextType = {
   screenHeight: number;
+  screenWidth: number;
   isSmallScreen: boolean;
 };
 
@@ -12,6 +13,7 @@ export const ScreenSizeContext = createContext<null | ScreenSizeContextType>(
 export const ScreenSizeProvider = ({ children }: { children: ReactNode }) => {
   const SMALL_SCREEN_BREAKPOINT = 1024;
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isSmallScreen, setIsSmallScreen] = useState(
     window.innerWidth < SMALL_SCREEN_BREAKPOINT
   );
@@ -19,6 +21,7 @@ export const ScreenSizeProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const handleResize = () => {
       setScreenHeight(window.innerHeight);
+      setScreenWidth(window.innerWidth);
       setIsSmallScreen(window.innerWidth < SMALL_SCREEN_BREAKPOINT);
     };
 
@@ -28,7 +31,9 @@ export const ScreenSizeProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <ScreenSizeContext.Provider value={{ screenHeight, isSmallScreen }}>
+    <ScreenSizeContext.Provider
+      value={{ screenHeight, screenWidth, isSmallScreen }}
+    >
       {children}
     </ScreenSizeContext.Provider>
   );
