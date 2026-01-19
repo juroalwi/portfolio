@@ -10,7 +10,7 @@ export default function About() {
     <div className="flex w-full max-w-[1000px] items-center lg:flex-row flex-col-reverse gap-0 lg:gap-20 justify-between">
       <div>
         <TypedTitle
-          className="mb-1 text-center lg:text-left"
+          className="mb-0 lg:mb-1 text-center lg:text-left"
           onFinishTyping={() => setMainTitleTyped(true)}
           caretHidden={mainTitleTyped}
           typingSpeedMs={40}
@@ -18,7 +18,7 @@ export default function About() {
           Hi there, Julian here!
         </TypedTitle>
         <TypedTitle
-          className="mb-6 text-center lg:text-left"
+          className="mb-4 lg:mb-6 text-center lg:text-left"
           typingSpeedMs={30}
           small
           disabled={!mainTitleTyped}
@@ -27,7 +27,7 @@ export default function About() {
         </TypedTitle>
 
         <FadeIn delay={200}>
-          <p className="text-base lg:text-lg xl:text-left text-justify max-w-[600px] w-full">
+          <p className="text-base lg:text-lg xl:text-left text-justify w-full">
             More than 3 years of experience building scalable and efficient
             systems using Typescript, NestJS, PostgreSQL and React.
             <br />I have a genuine enthusiasm for continuous learning and I

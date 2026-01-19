@@ -76,19 +76,14 @@ export default function TypedTitle({
     <h1
       ref={containerRef}
       className={twMerge(
-        "mb-8 font-[Bebas_Neue] uppercase tracking-wider font-bold",
-        small ? "text-lg lg:text-2xl" : "text-3xl lg:text-5xl",
+        "mb-8 lg:mb-16 font-[Bebas_Neue] uppercase tracking-wider font-bold",
+        small ? "text-xl lg:text-3xl" : "text-4xl lg:text-5xl",
         className
       )}
     >
       {displayedText}
       {(isTyping || isComplete) && !caretHidden && (
-        <span
-          className={twMerge(
-            "inline-block ml-0.5 text-primary",
-            isComplete && "blink"
-          )}
-        >
+        <span className={twMerge("ml-0.5 text-primary", isComplete && "blink")}>
           |
         </span>
       )}
