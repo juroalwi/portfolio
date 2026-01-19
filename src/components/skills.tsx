@@ -60,10 +60,11 @@ export default function Skills() {
       <ul className="w-full grid grid-cols-5 grid-rows-2 list-unstyled gap-x-16 gap-y-8">
         {skillsData.map(({ name, img }, index) => (
           <FadeIn
+            key={index}
             delay={50 * (index % 5) + (index < 5 ? 0 : 100)}
             duration={800}
           >
-            <li key={index} className="flex items-center">
+            <li className="flex items-center">
               <div className="flex flex-col items-center gap-2">
                 <img
                   className="w-20 h-20 aspect-square object-contain"
