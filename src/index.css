@@ -32,4 +32,5 @@ body {
   --color-primary: #ff6b66;
   --color-secondary: #5bb8b8;
   --color-light: #faf8f3;
+  --breakpoint-xs: 24rem;
 }

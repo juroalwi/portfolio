@@ -54,12 +54,12 @@ export default function Contact() {
   };
 
   return (
-    <div className="w-[60%] max-w-[1000px]">
-      <TypedTitle className="mb-12">Want to know more? Reach out!</TypedTitle>
+    <div className="w-full max-w-[1200px] xs:text-sm">
+      <TypedTitle>Want to know more? Reach out!</TypedTitle>
 
       <FadeIn delay={100}>
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
-          <div className="flex gap-8">
+          <div className="flex flex-col xs:flex-row gap-8">
             <FormField
               id="name"
               label="Name"
