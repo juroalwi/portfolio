@@ -24,7 +24,7 @@ function App() {
       <PopupProvider>
         <DynamicGraphsBackground className="fixed inset-0" />
 
-        <div className="fixed inset-0 backdrop-blur-[1.2px]"></div>
+        <div className="fixed inset-0 backdrop-blur-[0.0625rem]"></div>
 
         <div className="relative w-full mx-auto max-w-[600px] lg:max-w-[2000px]">
           <SideNavigation sections={sections} />
