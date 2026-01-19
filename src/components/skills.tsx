@@ -17,15 +17,15 @@ const skillsData = [
     img: typescript,
   },
   {
-    name: "NodeJS",
+    name: "Node",
     img: nodejs,
   },
   {
-    name: "NestJS",
+    name: "Nest",
     img: nestjs,
   },
   {
-    name: "PostgreSQL",
+    name: "Postgres",
     img: postgresql,
   },
   {
@@ -55,26 +55,23 @@ const skillsData = [
 ];
 export default function Skills() {
   return (
-    <div className="max-w-[1200px] w-[60%]">
-      <TypedTitle className="mb-16">Core skills</TypedTitle>
-      <ul className="w-full grid grid-cols-5 grid-rows-2 list-unstyled gap-x-16 gap-y-8">
+    <div className="max-w-[1200px] w-full">
+      <TypedTitle>Core skills</TypedTitle>
+      <ul className="w-full grid grid-cols-4 min-[400px]:grid-cols-5 grid-rows-2 list-unstyled gap-x-8 gap-y-4 sm:gap-x-16 sm:gap-y-8">
         {skillsData.map(({ name, img }, index) => (
           <FadeIn
             key={index}
             delay={50 * (index % 5) + (index < 5 ? 0 : 100)}
             duration={800}
+            className="flex"
           >
-            <li className="flex items-center">
-              <div className="flex flex-col items-center gap-2">
-                <img
-                  className="w-20 h-20 aspect-square object-contain"
-                  src={img}
-                  alt={name}
-                />
-                <div className="h-full grow">
-                  <h5 className="text-center">{name}</h5>
-                </div>
-              </div>
+            <li className="flex flex-col items-center gap-2 shrink justify-between min-w-0">
+              <img
+                className="max-w-16 sm:max-w-20 w-full aspect-square object-contain"
+                src={img}
+                alt={name}
+              />
+              <h5 className="text-center text-xs sm:text-base">{name}</h5>
             </li>
           </FadeIn>
         ))}
