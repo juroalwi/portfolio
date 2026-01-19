@@ -21,7 +21,7 @@ export default function ProjectCard({
 }: ProjectCardProps) {
   return (
     <div
-      className="h-full w-full relative group rounded-xl shadow-lg overflow-hidden cursor-pointer bg-secondary/3"
+      className="h-full w-full relative group rounded-xl shadow-lg overflow-hidden cursor-pointer bg-secondary/3 min-h-[250px] min-w-[200px]"
       key={id}
       onClick={() => {
         window.open(url, "_blank");

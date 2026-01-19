@@ -5,6 +5,7 @@ import weatherAppImg from "assets/weather-app.svg";
 import cookEmAllImg from "assets/cook-em-all.svg";
 import schoolsLicitationImg from "assets/schools-licitation.png";
 import femImg from "assets/fem.png";
+import { useScreenSize } from "/hooks/useScreenSize";
 
 type ProjectData = {
   name: string;
@@ -45,10 +46,69 @@ const projects: ProjectData[] = [
 ];
 
 export default function Projects() {
+  const { isSmallScreen } = useScreenSize();
+
+  if (isSmallScreen) {
+    return <SmallProjects projects={projects} />;
+  }
+
+  return <BigProjects projects={projects} />;
+}
+
+const SmallProjects = ({ projects }: { projects: ProjectData[] }) => {
   return (
-    <div className="w-[80%] max-w-[1400px] h-full flex items-start flex-col justify-center">
+    <div className="w-full flex items-start flex-col justify-center">
       <TypedTitle>Recent projects</TypedTitle>
-      <div className="grid grid-cols-12 grid-rows-6 gap-4 w-full h-full max-h-[700px]">
+      <div className="flex flex-col gap-16 w-full">
+        <FadeIn from="left">
+          <ProjectCard
+            id="project-0"
+            name={projects[0].name}
+            img={projects[0].img}
+            description={projects[0].description}
+            url={projects[0].url}
+          />
+        </FadeIn>
+
+        <FadeIn from="right">
+          <ProjectCard
+            id="project-1"
+            name={projects[1].name}
+            img={projects[1].img}
+            description={projects[1].description}
+            url={projects[1].url}
+          />
+        </FadeIn>
+
+        <FadeIn from="left">
+          <ProjectCard
+            id="project-2"
+            name={projects[2].name}
+            img={projects[2].img}
+            description={projects[2].description}
+            url={projects[2].url}
+          />
+        </FadeIn>
+
+        <FadeIn from="right">
+          <ProjectCard
+            id="project-3"
+            name={projects[3].name}
+            img={projects[3].img}
+            description={projects[3].description}
+            url={projects[3].url}
+          />
+        </FadeIn>
+      </div>
+    </div>
+  );
+};
+
+const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
+  return (
+    <div className="w-full h-full max-w-[1400px] max-h-[1000px] flex items-start flex-col justify-center">
+      <TypedTitle>Recent projects</TypedTitle>
+      <div className="grid grid-cols-12 grid-rows-6 gap-4 w-full h-full">
         <div className="row-span-6 col-span-5">
           <FadeIn delay={0} from="top" className="h-full w-full">
             <ProjectCard
@@ -100,4 +160,4 @@ export default function Projects() {
       </div>
     </div>
   );
-}
+};
