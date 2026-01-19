@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { IconProps } from "/types";
+import { useScreenSize } from "/hooks/useScreenSize";
 
 type Props = {
   sections: {
@@ -8,33 +9,17 @@ type Props = {
     component: () => ReactNode;
     icon: (props: IconProps) => ReactNode;
   }[];
-  smallScreenBreakpoint?: number;
 };
 
-export const SideNavigation = ({
-  sections,
-  smallScreenBreakpoint = 1024,
-}: Props) => {
+export const SideNavigation = ({ sections }: Props) => {
+  const { screenHeight, isSmallScreen } = useScreenSize();
   const [currentSection, setCurrentSection] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const isScrolling = useRef(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(
-    () =>
-      typeof window !== "undefined" && window.innerWidth < smallScreenBreakpoint
-  );
+  const disabled = isSmallScreen || screenHeight < 600;
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsSmallScreen(window.innerWidth < smallScreenBreakpoint);
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    if (isSmallScreen) return;
+    if (disabled) return;
 
     const handleWheel = (e: WheelEvent) => {
       if (isScrolling.current) return;
@@ -55,18 +40,18 @@ export const SideNavigation = ({
     window.addEventListener("wheel", handleWheel);
 
     return () => window.removeEventListener("wheel", handleWheel);
-  }, [currentSection, isSmallScreen, sections.length]);
+  }, [currentSection, disabled, sections.length]);
 
   useEffect(() => {
-    if (isSmallScreen) return;
+    if (disabled) return;
 
     if (containerRef.current) {
       containerRef.current.scrollTo({
-        top: currentSection * window.innerHeight,
+        top: currentSection * screenHeight,
         behavior: "smooth",
       });
     }
-  }, [currentSection, isSmallScreen]);
+  }, [currentSection, disabled, screenHeight]);
 
   const handleSidebarClick = (index: number) => {
     setCurrentSection(index);
@@ -76,7 +61,7 @@ export const SideNavigation = ({
     <div className="flex">
       <div
         className={
-          isSmallScreen
+          disabled
             ? "hidden"
             : "flex flex-col gap-16 p-4 self-center max-h-[1000px]"
         }
@@ -109,7 +94,7 @@ export const SideNavigation = ({
         }}
         className={twMerge(
           "w-full no-scrollbar",
-          isSmallScreen
+          disabled
             ? "overflow-y-auto h-auto  space-y-20"
             : "h-screen overflow-y-hidden space-y-0"
         )}
@@ -121,7 +106,7 @@ export const SideNavigation = ({
               key={`section-${index}`}
               className={twMerge(
                 "flex items-center justify-center",
-                isSmallScreen ? "h-auto p-4" : "h-screen p-10"
+                disabled ? "h-auto p-4" : "h-screen p-10"
               )}
             >
               <Component />
