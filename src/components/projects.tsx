@@ -3,7 +3,7 @@ import ProjectCard from "./project-card";
 import TypedTitle from "./typed-title/typed-title";
 import weatherAppImg from "assets/weather-app.svg";
 import cookEmAllImg from "assets/cook-em-all.svg";
-import schoolsLicitationImg from "assets/schools-licitationn.png";
+import schoolsLicitationImg from "assets/schools-licitation.png";
 import femImg from "assets/fem.png";
 
 type ProjectData = {
