@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 interface TypedTitleProps {
   children: string;
   typingSpeedMs?: number;
+  small?: boolean;
   disabled?: boolean;
   caretHidden?: boolean;
   className?: string;
@@ -14,6 +15,7 @@ interface TypedTitleProps {
 export default function TypedTitle({
   children: text,
   typingSpeedMs = 50,
+  small,
   disabled,
   caretHidden,
   className,
@@ -74,7 +76,8 @@ export default function TypedTitle({
     <h1
       ref={containerRef}
       className={twMerge(
-        "mb-8 font-[Bebas_Neue] text-5xl uppercase tracking-wider font-bold",
+        "mb-8 font-[Bebas_Neue] uppercase tracking-wider font-bold",
+        small ? "text-lg lg:text-2xl" : "text-3xl lg:text-5xl",
         className
       )}
     >
