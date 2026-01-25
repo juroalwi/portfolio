@@ -2,6 +2,7 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
     "@types/node": "^25.0.3",

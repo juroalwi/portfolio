@@ -20,7 +20,7 @@ const projects: ProjectData[] = [
     img: cookEmAllImg,
     description:
       "A responsive single-page recipe platform that lets users discover recipes by name, filter and sort results, create custom recipes, and explore detailed recipe views—all in a smooth, fast UI.",
-    url: "https://jralvarezwindey-food-app.vercel.app/landing",
+    url: "https://cook-em-all.fly.dev",
   },
   {
     name: "Finite Elements Method",
