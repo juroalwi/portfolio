@@ -1,13 +1,12 @@
 import { useState } from "react";
 import TypedTitle from "./typed-title/typed-title";
-import poi from "assets/poi.png";
 import { FadeIn } from "./fade-in";
 
 export default function About() {
   const [mainTitleTyped, setMainTitleTyped] = useState(false);
 
   return (
-    <div className="flex w-full max-w-[1000px] items-center lg:flex-row flex-col-reverse gap-0 lg:gap-20 justify-between">
+    <div className="flex w-full max-w-250 items-center lg:flex-row flex-col-reverse gap-0 lg:gap-20 justify-between">
       <div>
         <TypedTitle
           className="mb-0 lg:mb-1 text-center lg:text-left"
@@ -27,7 +26,7 @@ export default function About() {
         </TypedTitle>
 
         <FadeIn delay={200}>
-          <p className="text-base lg:text-lg xl:text-left text-justify w-full">
+          <p className="text-base lg:text-lg p-4 lg:p-0 text-left w-full">
             More than 3 years of experience building scalable and efficient
             systems using Typescript, NestJS, PostgreSQL and React.
             <br />I have a genuine enthusiasm for continuous learning and I
@@ -51,7 +50,8 @@ export default function About() {
           />
           <img
             className="absolute bottom-3 right-3 rounded-full w-84 bg-secondary/40 h-84 object-contain aspect-square z-10 shadow-lg"
-            src={poi}
+            decoding="async"
+            src="/poi.webp"
           />
         </div>
       </FadeIn>
