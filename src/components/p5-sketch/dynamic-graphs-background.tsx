@@ -11,18 +11,12 @@ type Dot = {
   spawnedAtMs: number;
 };
 
-const createSketch = (screenWidth: number, screenHeight: number) => (p: p5) => {
+const createSketch = () => (p: p5) => {
   const MIN_TTL_TO_INTERACT = 1000;
-  const DOTS_LIMIT = 60;
-  const baseArea = 1920 * 1080;
-  const screenArea = screenWidth * screenHeight;
-  const areaRatio = screenArea / baseArea;
-  const size = Math.max(2, Math.min(6, Math.floor(6 * areaRatio)));
-  const velocity = Math.max(0.2, Math.min(0.6, Math.floor(0.4 * areaRatio)));
-  const interactionDistance = Math.max(
-    400,
-    Math.min(800, Math.floor(600 * Math.sqrt(areaRatio)))
-  );
+  const DOTS_LIMIT = 30;
+  const DOTS_SIZE = 4;
+  const DOTS_VEL = 0.4;
+  const INTERACTION_DIST = 600;
   let dots: Dot[] = [];
 
   p.setup = () => {
@@ -31,7 +25,6 @@ const createSketch = (screenWidth: number, screenHeight: number) => (p: p5) => {
     // After canvas is created, resize to container
     setTimeout(() => {
       const container = (p as any).canvas?.parentElement;
-      console.log("container", container);
       if (container) {
         p.resizeCanvas(container.offsetWidth, container.offsetHeight);
       }
@@ -47,6 +40,7 @@ const createSketch = (screenWidth: number, screenHeight: number) => (p: p5) => {
 
   p.draw = () => {
     p.background(255);
+    const now = Date.now();
     if (dots.length < DOTS_LIMIT) {
       const side = p.floor(p.random(4)); // 0: top, 1: right, 2: bottom, 3: left
       let x, y, vx, vy;
@@ -54,23 +48,23 @@ const createSketch = (screenWidth: number, screenHeight: number) => (p: p5) => {
       if (side === 0) {
         x = p.random(p.width);
         y = 0;
-        vx = p.random(-2 * velocity, 2 * velocity);
-        vy = p.random(velocity, 5 * velocity);
+        vx = p.random(-2 * DOTS_VEL, 2 * DOTS_VEL);
+        vy = p.random(DOTS_VEL, 5 * DOTS_VEL);
       } else if (side === 1) {
         x = p.width;
         y = p.random(p.height);
-        vx = p.random(-5 * velocity, -velocity);
-        vy = p.random(-2 * velocity, 2 * velocity);
+        vx = p.random(-5 * DOTS_VEL, -DOTS_VEL);
+        vy = p.random(-2 * DOTS_VEL, 2 * DOTS_VEL);
       } else if (side === 2) {
         x = p.random(p.width);
         y = p.height;
-        vx = p.random(-2 * velocity, 2 * velocity);
-        vy = p.random(-5 * velocity, -velocity);
+        vx = p.random(-2 * DOTS_VEL, 2 * DOTS_VEL);
+        vy = p.random(-5 * DOTS_VEL, -DOTS_VEL);
       } else {
         x = 0;
         y = p.random(p.height);
-        vx = p.random(velocity, 5 * velocity);
-        vy = p.random(-2 * velocity, 2 * velocity);
+        vx = p.random(DOTS_VEL, 5 * DOTS_VEL);
+        vy = p.random(-2 * DOTS_VEL, 2 * DOTS_VEL);
       }
 
       dots.push({
@@ -78,50 +72,48 @@ const createSketch = (screenWidth: number, screenHeight: number) => (p: p5) => {
         y,
         vx,
         vy,
-        size: 1.5 * size,
-        spawnedAtMs: Date.now(),
+        size: 1.5 * DOTS_SIZE,
+        spawnedAtMs: now,
       });
     }
 
-    for (const dot of dots) {
+    for (let i = 0; i < dots.length; i++) {
+      const dot = dots[i];
       dot.x += dot.vx;
       dot.y += dot.vy;
 
-      p.fill(200, 200, 200, 255);
+      p.fill(180, 180, 180, 255);
       p.ellipse(dot.x, dot.y, dot.size, dot.size);
 
-      for (const otherDot of dots) {
-        if (dot === otherDot) continue;
+      for (let j = i + 1; j < dots.length; j++) {
+        const otherDot = dots[j];
 
         const ttlFactor =
-          (Math.min(MIN_TTL_TO_INTERACT, Date.now() - otherDot.spawnedAtMs) /
+          (Math.min(MIN_TTL_TO_INTERACT, now - otherDot.spawnedAtMs) /
             MIN_TTL_TO_INTERACT) *
-          (Math.min(MIN_TTL_TO_INTERACT, Date.now() - dot.spawnedAtMs) /
+          (Math.min(MIN_TTL_TO_INTERACT, now - dot.spawnedAtMs) /
             MIN_TTL_TO_INTERACT);
-        const distanceQuotient =
-          p.dist(dot.x, dot.y, otherDot.x, otherDot.y) / interactionDistance;
-        if (distanceQuotient <= 1) {
-          p.stroke(
-            200,
-            200,
-            200,
-            255 * ttlFactor * (1 - distanceQuotient) ** 2
-          );
-          p.strokeWeight(size / 15);
+        const dx = dot.x - otherDot.x;
+        const dy = dot.y - otherDot.y;
+        const distSq = dx * dx + dy * dy;
+        const maxDistSq = INTERACTION_DIST * INTERACTION_DIST;
+        if (distSq <= maxDistSq) {
+          const distQuotient = Math.sqrt(distSq) / INTERACTION_DIST;
+          p.stroke(180, 180, 180, 255 * ttlFactor * (1 - distQuotient) ** 2);
+          p.strokeWeight(DOTS_SIZE / 10);
           p.line(dot.x, dot.y, otherDot.x, otherDot.y);
         }
       }
     }
 
-    dots = dots.filter((dot) => {
+    for (let i = dots.length - 1; i >= 0; i--) {
+      const dot = dots[i];
       const shouldRemove =
-        dot.x < -dot.size - interactionDistance ||
-        dot.x > dot.size + p.width + interactionDistance ||
-        dot.y < -dot.size - interactionDistance ||
-        dot.y > dot.size + p.height + interactionDistance;
-
-      return !shouldRemove;
-    });
+        dot.x < 0 || dot.x > p.width || dot.y < 0 || dot.y > p.height;
+      if (shouldRemove) {
+        dots.splice(i, 1);
+      }
+    }
   };
 };
 
@@ -130,8 +122,9 @@ export default function DynamicGraphsBackground({
 }: {
   className?: string;
 }) {
-  const { screenWidth, screenHeight } = useScreenSize();
-  const sketch = createSketch(screenWidth, screenHeight);
+  const { isSmallScreen } = useScreenSize();
 
-  return <P5Sketch sketch={sketch} className={className} />;
+  if (isSmallScreen) return null;
+
+  return <P5Sketch sketch={createSketch()} className={className} />;
 }
