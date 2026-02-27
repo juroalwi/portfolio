@@ -26,7 +26,7 @@ function App() {
 
         <div className="fixed inset-0 backdrop-blur-[0.0625rem]"></div>
 
-        <div className="relative w-full mx-auto max-w-[600px] lg:max-w-[2000px]">
+        <div className="relative w-full mx-auto max-w-150 lg:max-w-500">
           <SideNavigation sections={sections} />
         </div>
       </PopupProvider>

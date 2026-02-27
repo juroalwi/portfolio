@@ -20,7 +20,7 @@ const projects: ProjectData[] = [
     img: cookEmAllImg,
     description:
       "A responsive single-page recipe platform that lets users discover recipes by name, filter and sort results, create custom recipes, and explore detailed recipe views—all in a smooth, fast UI.",
-    url: "https://cook-em-all.fly.dev",
+    url: "https://github.com/juroalwi/cook-em-all",
   },
   {
     name: "Finite Elements Method",
