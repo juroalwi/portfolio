@@ -14,7 +14,7 @@ export default function About() {
           caretHidden={mainTitleTyped}
           typingSpeedMs={40}
         >
-          Hi there, Julian here!
+          Hi there, this is Julian
         </TypedTitle>
         <TypedTitle
           className="mb-4 lg:mb-6 text-center lg:text-left"
@@ -22,13 +22,13 @@ export default function About() {
           small
           disabled={!mainTitleTyped}
         >
-          Full stack developer & Mathematician
+          Full stack engineer & Mathematician
         </TypedTitle>
 
         <FadeIn delay={200}>
           <p className="text-base lg:text-lg p-4 lg:p-0 text-left w-full">
-            More than 3 years of experience building scalable and efficient
-            systems using Typescript, NestJS, PostgreSQL and React.
+            Four years of experience building scalable and efficient systems
+            using Typescript, NestJS, PostgreSQL and React.
             <br />I have a genuine enthusiasm for continuous learning and I
             thrive in collaborative environments. Known for my meticulous
             attention to detail, I consistently strive to deliver work of the
