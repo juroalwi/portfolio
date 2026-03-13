@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TypedTitle from "./typed-title/typed-title";
 import { FadeIn } from "./fade-in";
+import poi from "assets/images/poi.webp";
 
 export default function About() {
   const [mainTitleTyped, setMainTitleTyped] = useState(false);
@@ -50,8 +51,7 @@ export default function About() {
           />
           <img
             className="absolute bottom-3 right-3 rounded-full w-84 bg-secondary/40 h-84 object-contain aspect-square z-10 shadow-lg"
-            decoding="async"
-            src="/poi.webp"
+            src={poi}
           />
         </div>
       </FadeIn>

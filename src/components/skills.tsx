@@ -1,13 +1,13 @@
-import typescript from "assets/typescript.svg";
-import nodejs from "assets/nodejs.svg";
-import nestjs from "assets/nestjs.svg";
-import postgresql from "assets/postgresql.svg";
-import redis from "assets/redis.svg";
-import react from "assets/react.svg";
-import html from "assets/html.svg";
-import css from "assets/css.svg";
-import tailwind from "assets/tailwind.svg";
-import web3 from "assets/web3.svg";
+import typescript from "assets/images/typescript.svg";
+import nodejs from "assets/images/nodejs.svg";
+import nestjs from "assets/images/nestjs.svg";
+import postgresql from "assets/images/postgresql.svg";
+import redis from "assets/images/redis.svg";
+import react from "assets/images/react.svg";
+import html from "assets/images/html.svg";
+import css from "assets/images/css.svg";
+import tailwind from "assets/images/tailwind.svg";
+import web3 from "assets/images/web3.svg";
 import TypedTitle from "./typed-title/typed-title";
 import { FadeIn } from "./fade-in";
 

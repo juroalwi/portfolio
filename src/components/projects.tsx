@@ -1,10 +1,10 @@
 import { FadeIn } from "./fade-in";
 import ProjectCard from "./project-card";
 import TypedTitle from "./typed-title/typed-title";
-import weatherAppImg from "assets/weather-app.svg";
-import cookEmAllImg from "assets/cook-em-all.svg";
-import schoolsLicitationImg from "assets/schools-licitation.png";
-import femImg from "assets/fem.png";
+import weatherAppImg from "assets/images/weather-app.svg";
+import cookEmAllImg from "assets/images/cook-em-all.svg";
+import schoolsLicitationImg from "assets/images/schools-licitation.png";
+import femImg from "assets/images/fem.png";
 import { useScreenSize } from "/hooks/useScreenSize";
 
 type ProjectData = {

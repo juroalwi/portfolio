@@ -41,7 +41,7 @@ export default function TypedTitle({
       },
       {
         threshold: 0.1,
-      }
+      },
     );
 
     const currentRef = containerRef.current;
@@ -78,7 +78,7 @@ export default function TypedTitle({
       className={twMerge(
         "mb-8 lg:mb-16 font-[Bebas_Neue] uppercase tracking-wider font-bold",
         small ? "text-xl lg:text-3xl" : "text-4xl lg:text-5xl",
-        className
+        className,
       )}
     >
       {displayedText}
