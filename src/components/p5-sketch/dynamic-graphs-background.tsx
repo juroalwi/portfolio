@@ -1,6 +1,6 @@
 import p5 from "p5";
-import P5Sketch from "./p5-sketch";
 import { useScreenSize } from "/hooks/useScreenSize";
+import { P5Sketch } from "./p5-sketch";
 
 type Dot = {
   x: number;
