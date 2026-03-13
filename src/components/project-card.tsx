@@ -10,7 +10,7 @@ type ProjectCardProps = {
   big?: boolean;
 };
 
-export default function ProjectCard({
+export const ProjectCard = ({
   id,
   name,
   img,
@@ -18,10 +18,10 @@ export default function ProjectCard({
   description,
   textClassName,
   big,
-}: ProjectCardProps) {
+}: ProjectCardProps) => {
   return (
     <div
-      className="h-full w-full relative group rounded-xl shadow-lg overflow-hidden cursor-pointer bg-secondary/3 min-h-[250px] min-w-[200px]"
+      className="group bg-secondary/3 relative h-full min-h-[250px] w-full min-w-[200px] cursor-pointer overflow-hidden rounded-xl shadow-lg"
       key={id}
       onClick={() => {
         window.open(url, "_blank");
@@ -30,30 +30,30 @@ export default function ProjectCard({
       <div className="absolute inset-0">
         <img
           src={img}
-          className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
+          className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105"
           alt={name}
         />
-        <div className="absolute inset-0 bg-linear-to-t from-dark/80 via-dark/40 to-transparent" />
+        <div className="from-dark/80 via-dark/40 absolute inset-0 bg-linear-to-t to-transparent" />
       </div>
 
       <div
         className={twMerge(
-          "absolute bottom-0 left-0 right-0 flex flex-col gap-2 text-light p-6",
-          textClassName
+          "text-light absolute right-0 bottom-0 left-0 flex flex-col gap-2 p-6",
+          textClassName,
         )}
       >
         <h3
           className={twMerge(
-            "text-2xl font-bold font-[Bebas_Neue] uppercase tracking-wider",
-            big && "text-5xl scale-y-110"
+            "font-[Bebas_Neue] text-2xl font-bold tracking-wider uppercase",
+            big && "scale-y-110 text-5xl",
           )}
         >
           {name}
         </h3>
         <p
           className={twMerge(
-            "text-sm leading-relaxed opacity-90 line-clamp-3",
-            big && "text-lg"
+            "line-clamp-3 text-sm leading-relaxed opacity-90",
+            big && "text-lg",
           )}
         >
           {description}
@@ -61,4 +61,4 @@ export default function ProjectCard({
       </div>
     </div>
   );
-}
+};

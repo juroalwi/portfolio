@@ -7,7 +7,7 @@ type ScreenSizeContextType = {
 };
 
 export const ScreenSizeContext = createContext<null | ScreenSizeContextType>(
-  null
+  null,
 );
 
 export const ScreenSizeProvider = ({ children }: { children: ReactNode }) => {
@@ -15,7 +15,7 @@ export const ScreenSizeProvider = ({ children }: { children: ReactNode }) => {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isSmallScreen, setIsSmallScreen] = useState(
-    window.innerWidth < SMALL_SCREEN_BREAKPOINT
+    window.innerWidth < SMALL_SCREEN_BREAKPOINT,
   );
 
   useEffect(() => {

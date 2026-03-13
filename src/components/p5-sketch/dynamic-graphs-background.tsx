@@ -117,14 +117,14 @@ const createSketch = () => (p: p5) => {
   };
 };
 
-export default function DynamicGraphsBackground({
+export const DynamicGraphsBackground = ({
   className,
 }: {
   className?: string;
-}) {
+}) => {
   const { isSmallScreen } = useScreenSize();
 
   if (isSmallScreen) return null;
 
   return <P5Sketch sketch={createSketch()} className={className} />;
-}
+};

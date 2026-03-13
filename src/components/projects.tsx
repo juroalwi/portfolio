@@ -1,11 +1,11 @@
-import { FadeIn } from "./fade-in";
-import ProjectCard from "./project-card";
-import TypedTitle from "./typed-title/typed-title";
+import { useScreenSize } from "/hooks/useScreenSize";
+import { FadeIn } from "components/fade-in";
+import { ProjectCard } from "components/project-card";
+import { TypedTitle } from "components/typed-title/typed-title";
 import weatherAppImg from "assets/images/weather-app.svg";
 import cookEmAllImg from "assets/images/cook-em-all.svg";
 import schoolsLicitationImg from "assets/images/schools-licitation.png";
 import femImg from "assets/images/fem.png";
-import { useScreenSize } from "/hooks/useScreenSize";
 
 type ProjectData = {
   name: string;
@@ -45,7 +45,7 @@ const projects: ProjectData[] = [
   },
 ];
 
-export default function Projects() {
+export const Projects = () => {
   const { isSmallScreen } = useScreenSize();
 
   if (isSmallScreen) {
@@ -53,13 +53,13 @@ export default function Projects() {
   }
 
   return <BigProjects projects={projects} />;
-}
+};
 
 const SmallProjects = ({ projects }: { projects: ProjectData[] }) => {
   return (
-    <div className="w-full flex items-start flex-col justify-center">
+    <div className="flex w-full flex-col items-start justify-center">
       <TypedTitle>Recent projects</TypedTitle>
-      <div className="flex flex-col gap-16 w-full">
+      <div className="flex w-full flex-col gap-16">
         <FadeIn from="left">
           <ProjectCard
             id="project-0"
@@ -106,10 +106,10 @@ const SmallProjects = ({ projects }: { projects: ProjectData[] }) => {
 
 const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
   return (
-    <div className="w-full h-full max-w-[1400px] max-h-[1000px] flex items-start flex-col justify-center">
+    <div className="flex h-full max-h-[1000px] w-full max-w-[1400px] flex-col items-start justify-center">
       <TypedTitle>Recent projects</TypedTitle>
-      <div className="grid grid-cols-12 grid-rows-6 gap-4 w-full h-full">
-        <div className="row-span-6 col-span-5">
+      <div className="grid h-full w-full grid-cols-12 grid-rows-6 gap-4">
+        <div className="col-span-5 row-span-6">
           <FadeIn delay={0} from="top" className="h-full w-full">
             <ProjectCard
               id="project-0"
@@ -122,7 +122,7 @@ const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
           </FadeIn>
         </div>
 
-        <div className="row-span-3 col-span-4">
+        <div className="col-span-4 row-span-3">
           <FadeIn delay={50} from="top" className="h-full w-full">
             <ProjectCard
               id="project-1"
@@ -134,7 +134,7 @@ const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
           </FadeIn>
         </div>
 
-        <div className="row-span-3 col-span-3">
+        <div className="col-span-3 row-span-3">
           <FadeIn delay={100} from="top" className="h-full w-full">
             <ProjectCard
               id="project-2"
@@ -146,7 +146,7 @@ const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
           </FadeIn>
         </div>
 
-        <div className="row-span-3 col-span-6">
+        <div className="col-span-6 row-span-3">
           <FadeIn delay={150} from="right" className="h-full w-full">
             <ProjectCard
               id="project-3"

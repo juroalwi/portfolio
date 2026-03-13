@@ -6,7 +6,7 @@ export const usePopup = () => {
 
   if (!ctx) {
     throw new Error(
-      "No PopupContext found. Make sure usePopup is being used within PopupProvider"
+      "No PopupContext found. Make sure usePopup is being used within PopupProvider",
     );
   }
 

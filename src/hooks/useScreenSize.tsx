@@ -6,7 +6,7 @@ export const useScreenSize = () => {
 
   if (!ctx) {
     throw new Error(
-      "No ScreenSizeContext found. Make sure useScreenSize is being used within ScreenSizeProvider"
+      "No ScreenSizeContext found. Make sure useScreenSize is being used within ScreenSizeProvider",
     );
   }
 

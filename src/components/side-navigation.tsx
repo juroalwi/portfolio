@@ -1,7 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { IconProps } from "/types";
-import { useScreenSize } from "/hooks/useScreenSize";
+import { IconProps } from "types/";
+import { useScreenSize } from "hooks/useScreenSize";
 
 type Props = {
   sections: {
@@ -63,24 +63,24 @@ export const SideNavigation = ({ sections }: Props) => {
         className={
           disabled
             ? "hidden"
-            : "flex flex-col gap-16 p-4 self-center max-h-[1000px]"
+            : "flex max-h-[1000px] flex-col gap-16 self-center p-4"
         }
       >
         {sections.map((section, index) => {
           const Icon = section.icon;
           return (
             <button
-              className="p-4 group h-full outline-none cursor-pointer"
+              className="group h-full cursor-pointer p-4 outline-none"
               key={`section-button-${index}`}
               onClick={() => handleSidebarClick(index)}
               aria-label={section.name}
             >
               <Icon
                 className={twMerge(
-                  "w-8 h-8 transiton-all duration-200",
+                  "transiton-all h-8 w-8 duration-200",
                   currentSection === index
-                    ? "stroke-primary scale-150 translate-x-2"
-                    : "stroke-dark group-hover:scale-125"
+                    ? "stroke-primary translate-x-2 scale-150"
+                    : "stroke-dark group-hover:scale-125",
                 )}
               />
             </button>
@@ -93,10 +93,10 @@ export const SideNavigation = ({ sections }: Props) => {
           containerRef.current = el;
         }}
         className={twMerge(
-          "w-full no-scrollbar",
+          "no-scrollbar w-full",
           disabled
-            ? "overflow-y-auto h-auto  space-y-20"
-            : "h-screen overflow-y-hidden space-y-0"
+            ? "h-auto space-y-20 overflow-y-auto"
+            : "h-screen space-y-0 overflow-y-hidden",
         )}
       >
         {sections.map((section, index) => {
@@ -106,7 +106,7 @@ export const SideNavigation = ({ sections }: Props) => {
               key={`section-${index}`}
               className={twMerge(
                 "flex items-center justify-center",
-                disabled ? "h-auto p-4" : "h-screen p-10"
+                disabled ? "h-auto p-4" : "h-screen p-10",
               )}
             >
               <Component />

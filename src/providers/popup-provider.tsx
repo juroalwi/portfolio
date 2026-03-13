@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { Popup } from "../components/popup";
+import { Popup } from "/components/popup";
 
 type PopupVariant = "info" | "success" | "error";
 

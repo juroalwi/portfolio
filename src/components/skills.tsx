@@ -1,3 +1,5 @@
+import { TypedTitle } from "./typed-title/typed-title";
+import { FadeIn } from "./fade-in";
 import typescript from "assets/images/typescript.svg";
 import nodejs from "assets/images/nodejs.svg";
 import nestjs from "assets/images/nestjs.svg";
@@ -8,8 +10,6 @@ import html from "assets/images/html.svg";
 import css from "assets/images/css.svg";
 import tailwind from "assets/images/tailwind.svg";
 import web3 from "assets/images/web3.svg";
-import TypedTitle from "./typed-title/typed-title";
-import { FadeIn } from "./fade-in";
 
 const skillsData = [
   {
@@ -53,11 +53,11 @@ const skillsData = [
     img: web3,
   },
 ];
-export default function Skills() {
+export const Skills = () => {
   return (
-    <div className="max-w-[1200px] w-full">
+    <div className="w-full max-w-[1200px]">
       <TypedTitle>Core skills</TypedTitle>
-      <ul className="w-full grid grid-cols-4 min-[400px]:grid-cols-5 grid-rows-2 list-unstyled gap-x-8 gap-y-4 sm:gap-x-16 sm:gap-y-8">
+      <ul className="list-unstyled grid w-full grid-cols-4 grid-rows-2 gap-x-8 gap-y-4 min-[400px]:grid-cols-5 sm:gap-x-16 sm:gap-y-8">
         {skillsData.map(({ name, img }, index) => (
           <FadeIn
             key={index}
@@ -65,9 +65,9 @@ export default function Skills() {
             duration={800}
             className="flex"
           >
-            <li className="flex flex-col items-center gap-2 shrink justify-between min-w-0">
+            <li className="flex min-w-0 shrink flex-col items-center justify-between gap-2">
               <img
-                className="max-w-16 sm:max-w-20 w-full aspect-square object-contain"
+                className="aspect-square w-full max-w-16 object-contain sm:max-w-20"
                 src={img}
                 alt={name}
               />
@@ -78,4 +78,4 @@ export default function Skills() {
       </ul>
     </div>
   );
-}
+};

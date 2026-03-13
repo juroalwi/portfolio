@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { FadeIn } from "./fade-in";
+import { FadeIn } from "components/fade-in";
 
 type Props = {
   message: string;
@@ -12,13 +12,13 @@ export const Popup = ({ message, type = "info", className }: Props) => {
     <FadeIn from="top">
       <div
         className={twMerge(
-          "px-6 py-2 rounded text-light",
+          "text-light rounded px-6 py-2",
           type === "info"
             ? "bg-secondary"
             : type === "success"
-            ? "bg-green-600"
-            : "bg-red-600",
-          className
+              ? "bg-green-600"
+              : "bg-red-600",
+          className,
         )}
       >
         <p>{message}</p>

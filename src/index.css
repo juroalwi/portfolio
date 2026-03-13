@@ -3,34 +3,48 @@
 @import "tailwindcss";
 
 body {
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
-  box-sizing: border-box;
-  font-family: "Poppins", "Babas Neue" sans-serif;
-  color: var(--color-dark);
-  background-color: var(--color-light);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    box-sizing: border-box;
+    font-family:
+        "Poppins",
+        "Babas Neue" sans-serif;
+    color: var(--color-dark);
+    background-color: var(--color-light);
 }
 
 @layer utilities {
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
 
-  input:-webkit-autofill {
-    box-shadow: 0 0 0px 1000px theme("colors.white") inset;
-    -webkit-text-fill-color: theme("colors.gray.900");
-  }
+    input:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px theme("colors.white") inset;
+        -webkit-text-fill-color: theme("colors.gray.900");
+    }
 }
 
 @theme {
-  --color-dark: #393e46;
-  --color-primary: #ff6b66;
-  --color-secondary: #5bb8b8;
-  --color-light: #faf8f3;
-  --breakpoint-xs: 24rem;
+    --color-dark: #393e46;
+    --color-primary: #ff6b66;
+    --color-secondary: #5bb8b8;
+    --color-light: #faf8f3;
+    --breakpoint-xs: 24rem;
+    --animate-blink: blink 1s infinite;
+
+    @keyframes blink {
+        0%,
+        50% {
+            opacity: 1;
+        }
+        51%,
+        100% {
+            opacity: 0;
+        }
+    }
 }

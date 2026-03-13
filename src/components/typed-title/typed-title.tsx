@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import "./typed-title.css";
 import { twMerge } from "tailwind-merge";
 
 interface TypedTitleProps {
@@ -12,7 +11,7 @@ interface TypedTitleProps {
   onFinishTyping?: () => void;
 }
 
-export default function TypedTitle({
+export const TypedTitle = ({
   children: text,
   typingSpeedMs = 50,
   small,
@@ -20,7 +19,7 @@ export default function TypedTitle({
   caretHidden,
   className,
   onFinishTyping,
-}: TypedTitleProps) {
+}: TypedTitleProps) => {
   const [displayedText, setDisplayedText] = useState("\u00A0");
   const [isTyping, setIsTyping] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
@@ -76,17 +75,22 @@ export default function TypedTitle({
     <h1
       ref={containerRef}
       className={twMerge(
-        "mb-8 lg:mb-16 font-[Bebas_Neue] uppercase tracking-wider font-bold",
+        "mb-8 font-[Bebas_Neue] font-bold tracking-wider uppercase lg:mb-16",
         small ? "text-xl lg:text-3xl" : "text-4xl lg:text-5xl",
         className,
       )}
     >
       {displayedText}
       {(isTyping || isComplete) && !caretHidden && (
-        <span className={twMerge("ml-0.5 text-primary", isComplete && "blink")}>
+        <span
+          className={twMerge(
+            "text-primary ml-0.5",
+            isComplete && "animate-blink",
+          )}
+        >
           |
         </span>
       )}
     </h1>
   );
-}
+};

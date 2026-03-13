@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { FadeIn } from "./fade-in";
-import TypedTitle from "./typed-title/typed-title";
-import { usePopup } from "/hooks/use-popup";
-import { Spinner } from "./spinner";
+import { usePopup } from "hooks/use-popup";
+import { Spinner } from "components/spinner";
+import { FadeIn } from "components/fade-in";
+import { TypedTitle } from "components/typed-title/typed-title";
 
-export default function Contact() {
+export const Contact = () => {
   const { open } = usePopup();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState("");
@@ -31,7 +31,8 @@ export default function Contact() {
         if (Array.isArray(result.errors)) {
           if (
             result.errors.some(
-              (err: { field: string; message: string }) => err.field === "email"
+              (err: { field: string; message: string }) =>
+                err.field === "email",
             )
           ) {
             throw new Error(`Invalid email`);
@@ -54,12 +55,12 @@ export default function Contact() {
   };
 
   return (
-    <div className="w-full max-w-[1200px] xs:text-sm">
+    <div className="xs:text-sm w-full max-w-[1200px]">
       <TypedTitle>Want to know more? Reach out!</TypedTitle>
 
       <FadeIn delay={100}>
         <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
-          <div className="flex flex-col xs:flex-row gap-8">
+          <div className="xs:flex-row flex flex-col gap-8">
             <FormField
               id="name"
               label="Name"
@@ -95,10 +96,10 @@ export default function Contact() {
             type="submit"
             disabled={isSubmitting}
             className={twMerge(
-              "ml-auto mt-2 bg-dark text-light rounded-full font-medium transition-all duration-200 outline-none w-28 h-12 items-center flex justify-center",
+              "bg-dark text-light mt-2 ml-auto flex h-12 w-28 items-center justify-center rounded-full font-medium transition-all duration-200 outline-none",
               isSubmitting
-                ? "cursor-not-allowed bg-dark/90"
-                : "cursor-pointer hover:bg-dark/90 "
+                ? "bg-dark/90 cursor-not-allowed"
+                : "hover:bg-dark/90 cursor-pointer",
             )}
           >
             {isSubmitting ? <Spinner fill="white" /> : "Send"}
@@ -107,7 +108,7 @@ export default function Contact() {
       </FadeIn>
     </div>
   );
-}
+};
 
 const FormField = ({
   id,
@@ -155,7 +156,7 @@ const FormField = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           rows={6}
-          className={twMerge("resize-none w-full focus:outline-none")}
+          className={twMerge("w-full resize-none focus:outline-none")}
         />
       </div>
     );
@@ -174,7 +175,7 @@ const FormField = ({
         required={required}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        className="h-full w-full focus:outline-none transition-all duration-300"
+        className="h-full w-full transition-all duration-300 focus:outline-none"
       />
     </div>
   );

@@ -1,16 +1,16 @@
 import { useState } from "react";
-import TypedTitle from "./typed-title/typed-title";
-import { FadeIn } from "./fade-in";
+import { TypedTitle } from "components/typed-title/typed-title";
+import { FadeIn } from "components/fade-in";
 import poi from "assets/images/poi.webp";
 
-export default function About() {
+export const About = () => {
   const [mainTitleTyped, setMainTitleTyped] = useState(false);
 
   return (
-    <div className="flex w-full max-w-250 items-center lg:flex-row flex-col-reverse gap-0 lg:gap-20 justify-between">
+    <div className="flex w-full max-w-250 flex-col-reverse items-center justify-between gap-0 lg:flex-row lg:gap-20">
       <div>
         <TypedTitle
-          className="mb-0 lg:mb-1 text-center lg:text-left"
+          className="mb-0 text-center lg:mb-1 lg:text-left"
           onFinishTyping={() => setMainTitleTyped(true)}
           caretHidden={mainTitleTyped}
           typingSpeedMs={40}
@@ -18,7 +18,7 @@ export default function About() {
           Hi there, this is Julian
         </TypedTitle>
         <TypedTitle
-          className="mb-4 lg:mb-6 text-center lg:text-left"
+          className="mb-4 text-center lg:mb-6 lg:text-left"
           typingSpeedMs={30}
           small
           disabled={!mainTitleTyped}
@@ -27,7 +27,7 @@ export default function About() {
         </TypedTitle>
 
         <FadeIn delay={200}>
-          <p className="text-base lg:text-lg p-4 lg:p-0 text-left w-full">
+          <p className="w-full p-4 text-left text-base lg:p-0 lg:text-lg">
             Four years of experience building scalable and efficient systems
             using Typescript, NestJS, PostgreSQL and React.
             <br />I have a genuine enthusiasm for continuous learning and I
@@ -39,9 +39,9 @@ export default function About() {
       </div>
 
       <FadeIn delay={100}>
-        <div className="relative w-84 h-84 shrink-0 scale-75 size-0.5 lg:scale-none">
+        <div className="relative size-0.5 h-84 w-84 shrink-0 scale-75 lg:scale-none">
           <div
-            className="absolute inset-0 rounded-full bg-primary/40 shadow-lg"
+            className="bg-primary/40 absolute inset-0 rounded-full shadow-lg"
             style={{
               maskImage:
                 "radial-gradient(circle 168px at calc(50% - 12px) calc(50% - 12px), transparent 168px, black 169px)",
@@ -50,11 +50,11 @@ export default function About() {
             }}
           />
           <img
-            className="absolute bottom-3 right-3 rounded-full w-84 bg-secondary/40 h-84 object-contain aspect-square z-10 shadow-lg"
+            className="bg-secondary/40 absolute right-3 bottom-3 z-10 aspect-square h-84 w-84 rounded-full object-contain shadow-lg"
             src={poi}
           />
         </div>
       </FadeIn>
     </div>
   );
-}
+};

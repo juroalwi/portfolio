@@ -44,7 +44,7 @@ export const FadeIn = ({
       },
       {
         threshold: 0.1,
-      }
+      },
     );
 
     const currentRef = cardRef.current;
@@ -65,7 +65,7 @@ export const FadeIn = ({
       className={twMerge(
         isVisible ? "opacity-100" : "opacity-0",
         isVisible ? translateTo : translateFrom,
-        className
+        className,
       )}
       style={{
         transitionDuration: `${duration}ms`,
