@@ -55,7 +55,7 @@ export const Contact = () => {
   };
 
   return (
-    <div className="xs:text-sm w-full max-w-[1200px]">
+    <div className="xs:text-sm w-full max-w-300">
       <TypedTitle>Want to know more? Reach out!</TypedTitle>
 
       <FadeIn delay={100}>

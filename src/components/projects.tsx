@@ -106,7 +106,7 @@ const SmallProjects = ({ projects }: { projects: ProjectData[] }) => {
 
 const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
   return (
-    <div className="flex h-full max-h-[1000px] w-full max-w-[1400px] flex-col items-start justify-center">
+    <div className="flex h-full max-h-250 w-full max-w-350 flex-col items-start justify-center">
       <TypedTitle>Recent projects</TypedTitle>
       <div className="grid h-full w-full grid-cols-12 grid-rows-6 gap-4">
         <div className="col-span-5 row-span-6">

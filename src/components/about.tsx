@@ -7,7 +7,7 @@ export const About = () => {
   const [mainTitleTyped, setMainTitleTyped] = useState(false);
 
   return (
-    <div className="flex w-full max-w-250 flex-col-reverse items-center justify-between gap-0 lg:flex-row lg:gap-20">
+    <div className="flex w-full max-w-300 flex-col-reverse items-center justify-between gap-0 lg:flex-row lg:gap-20">
       <div>
         <TypedTitle
           className="mb-0 text-center lg:mb-1 lg:text-left"
