@@ -14,7 +14,7 @@ export const About = () => {
         />
 
         <FadeIn delay={200}>
-          <p className="px-4 text-justify text-sm lg:px-0 lg:text-lg">
+          <p className="px-4 text-justify text-sm lg:px-0 lg:text-left lg:text-lg">
             Four years of experience building scalable and efficient systems
             using Typescript, NestJS, PostgreSQL and React.
             <br />I have a genuine enthusiasm for continuous learning and I
