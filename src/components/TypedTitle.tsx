@@ -77,7 +77,7 @@ export const TypedTitle = ({
   return (
     <div
       className={twMerge(
-        "mb-8 font-[Bebas_Neue] font-bold tracking-wider uppercase lg:mb-16",
+        "font-bebas mb-8 font-bold tracking-wider uppercase lg:mb-16",
         className,
       )}
     >
@@ -96,7 +96,7 @@ export const TypedTitle = ({
       </h2>
 
       {subtitle.length > 0 && (
-        <h3 className="text-lg lg:text-3xl">
+        <h3 className="text-base lg:text-3xl">
           {displayedSubtitle.length > 0 ? displayedSubtitle : "\u00A0"}
           {displayedSubtitle.length > 0 && (
             <span
