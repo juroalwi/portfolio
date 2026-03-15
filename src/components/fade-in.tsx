@@ -1,5 +1,4 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 export const FadeIn = ({
   children,
@@ -16,24 +15,9 @@ export const FadeIn = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
-  let translateFrom: string;
-  let translateTo: string;
-
-  if (from === "left") {
-    translateFrom = "translate-x-[-32px]";
-    translateTo = "translate-x-[0px]";
-  } else if (from === "top") {
-    translateFrom = "translate-y-[-32px]";
-    translateTo = "translate-y-[0px]";
-  } else if (from === "right") {
-    translateFrom = "translate-x-[32px]";
-    translateTo = "translate-x-[0px]";
-  } else {
-    translateFrom = "translate-y-[32px]";
-    translateTo = "translate-y-[0px]";
-  }
 
   useEffect(() => {
+    const currentRef = cardRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -47,7 +31,6 @@ export const FadeIn = ({
       },
     );
 
-    const currentRef = cardRef.current;
     if (currentRef) {
       observer.observe(currentRef);
     }
@@ -59,15 +42,30 @@ export const FadeIn = ({
     };
   }, []);
 
+  const getTransform = () => {
+    if (isVisible) return "translate(0,0)";
+
+    switch (from) {
+      case "bottom":
+        return "translateY(32px)";
+      case "top":
+        return "translateY(-32px)";
+      case "left":
+        return "translateX(-32px)";
+      case "right":
+        return "translateX(32px)";
+      default:
+        return "translateY(32px)";
+    }
+  };
+
   return (
     <div
       ref={cardRef}
-      className={twMerge(
-        isVisible ? "opacity-100" : "opacity-0",
-        isVisible ? translateTo : translateFrom,
-        className,
-      )}
+      className={className}
       style={{
+        transform: getTransform(),
+        opacity: isVisible ? 1 : 0,
         transitionDuration: `${duration}ms`,
         transitionDelay: `${delay}ms`,
       }}

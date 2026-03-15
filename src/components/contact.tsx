@@ -58,15 +58,17 @@ export const Contact = () => {
     <div className="xs:text-sm w-full max-w-300">
       <TypedTitle>Want to know more? Reach out!</TypedTitle>
 
-      <FadeIn delay={100}>
-        <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
-          <div className="xs:flex-row flex flex-col gap-8">
+      <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
+        <div className="xs:flex-row flex flex-col gap-8">
+          <FadeIn delay={0} from="left" className="w-full">
             <FormField
               id="name"
               label="Name"
               value={name}
               onChange={(v) => setName(v)}
             />
+          </FadeIn>
+          <FadeIn delay={100} from="right" className="w-full">
             <FormField
               id="email"
               label="Email"
@@ -74,15 +76,19 @@ export const Contact = () => {
               value={email}
               onChange={(v) => setEmail(v)}
             />
-          </div>
+          </FadeIn>
+        </div>
 
+        <FadeIn delay={200} from="left">
           <FormField
             id="subject"
             label="Subject"
             value={subject}
             onChange={(v) => setSubject(v)}
           />
+        </FadeIn>
 
+        <FadeIn delay={300} from="right">
           <FormField
             id="message"
             label="Message"
@@ -91,21 +97,21 @@ export const Contact = () => {
             value={message}
             onChange={(v) => setMessage(v)}
           />
+        </FadeIn>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={twMerge(
-              "bg-dark text-light mt-2 ml-auto flex h-12 w-28 items-center justify-center rounded-full font-medium transition-all duration-200 outline-none",
-              isSubmitting
-                ? "bg-dark/90 cursor-not-allowed"
-                : "hover:bg-dark/90 cursor-pointer",
-            )}
-          >
-            {isSubmitting ? <Spinner fill="white" /> : "Send"}
-          </button>
-        </form>
-      </FadeIn>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className={twMerge(
+            "bg-dark text-light mt-2 ml-auto flex h-12 w-28 items-center justify-center rounded-full font-medium transition-all duration-200 outline-none",
+            isSubmitting
+              ? "bg-dark/90 cursor-not-allowed"
+              : "hover:bg-dark/90 cursor-pointer",
+          )}
+        >
+          {isSubmitting ? <Spinner fill="white" /> : "Send"}
+        </button>
+      </form>
     </div>
   );
 };
