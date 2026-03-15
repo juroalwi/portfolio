@@ -56,7 +56,7 @@ export const Contact = () => {
 
   return (
     <div className="xs:text-sm w-full max-w-300">
-      <TypedTitle>Want to know more? Reach out!</TypedTitle>
+      <TypedTitle title="Want to know more? Reach out!" />
 
       <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
         <div className="xs:flex-row flex flex-col gap-8">

@@ -58,7 +58,7 @@ export const Projects = () => {
 const SmallProjects = ({ projects }: { projects: ProjectData[] }) => {
   return (
     <div className="flex w-full flex-col items-start justify-center">
-      <TypedTitle>Recent projects</TypedTitle>
+      <TypedTitle title="Recent projects" />
       <div className="flex w-full flex-col gap-16">
         <FadeIn from="left">
           <ProjectCard
@@ -107,7 +107,7 @@ const SmallProjects = ({ projects }: { projects: ProjectData[] }) => {
 const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
   return (
     <div className="flex h-full max-h-250 w-full max-w-350 flex-col items-start justify-center">
-      <TypedTitle>Recent projects</TypedTitle>
+      <TypedTitle title="Recent projects" />
       <div className="grid h-full w-full grid-cols-12 grid-rows-6 gap-4">
         <div className="col-span-5 row-span-6">
           <FadeIn delay={0} from="top" className="h-full w-full">

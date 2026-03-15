@@ -2,39 +2,31 @@ import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface TypedTitleProps {
-  children: string;
+  title: string;
+  subtitle?: string;
   typingSpeedMs?: number;
-  small?: boolean;
-  disabled?: boolean;
-  caretHidden?: boolean;
   className?: string;
-  onFinishTyping?: () => void;
 }
 
 export const TypedTitle = ({
-  children: text,
+  title,
+  subtitle = "",
   typingSpeedMs = 50,
-  small,
-  disabled,
-  caretHidden,
   className,
-  onFinishTyping,
 }: TypedTitleProps) => {
-  const [displayedText, setDisplayedText] = useState("\u00A0");
-  const [isTyping, setIsTyping] = useState(false);
+  const [isIdle, setIsIdle] = useState(true);
   const [isComplete, setIsComplete] = useState(false);
+  const [displayedTitle, setDisplayedTitle] = useState("");
+  const [displayedSubtitle, setDisplayedSubtitle] = useState("");
   const containerRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    if (disabled) return;
-
+    const currentRef = containerRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !isTyping && !isComplete) {
-            setIsTyping(true);
-            setIsComplete(false);
-            setDisplayedText("");
+          if (entry.isIntersecting && isIdle) {
+            setIsIdle(false);
           }
         });
       },
@@ -43,7 +35,6 @@ export const TypedTitle = ({
       },
     );
 
-    const currentRef = containerRef.current;
     if (currentRef) {
       observer.observe(currentRef);
     }
@@ -53,44 +44,72 @@ export const TypedTitle = ({
         observer.unobserve(currentRef);
       }
     };
-  }, [disabled, isTyping, isComplete]);
+  }, [isIdle]);
 
   useEffect(() => {
-    if (disabled || !isTyping) return;
+    if (isIdle || isComplete) return;
 
-    if (displayedText.length < text.length) {
+    if (displayedTitle.length < title.length) {
       const timer = setTimeout(() => {
-        setDisplayedText(text.slice(0, displayedText.length + 1));
+        setDisplayedTitle(title.slice(0, displayedTitle.length + 1));
       }, typingSpeedMs);
-
       return () => clearTimeout(timer);
-    } else {
-      setIsTyping(false);
-      setIsComplete(true);
-      onFinishTyping?.();
     }
-  }, [displayedText, isTyping, isComplete, text, typingSpeedMs]);
+
+    if (displayedSubtitle.length < subtitle.length) {
+      const timer = setTimeout(() => {
+        setDisplayedSubtitle(subtitle.slice(0, displayedSubtitle.length + 1));
+      }, typingSpeedMs);
+      return () => clearTimeout(timer);
+    }
+
+    setIsComplete(true);
+  }, [
+    displayedTitle,
+    displayedSubtitle,
+    title,
+    subtitle,
+    isComplete,
+    isIdle,
+    typingSpeedMs,
+  ]);
 
   return (
-    <h1
-      ref={containerRef}
+    <div
       className={twMerge(
         "mb-8 font-[Bebas_Neue] font-bold tracking-wider uppercase lg:mb-16",
-        small ? "text-xl lg:text-3xl" : "text-4xl lg:text-5xl",
         className,
       )}
     >
-      {displayedText}
-      {(isTyping || isComplete) && !caretHidden && (
-        <span
-          className={twMerge(
-            "text-primary ml-0.5",
-            isComplete && "animate-blink",
+      <h2 ref={containerRef} className="text-4xl lg:text-5xl">
+        {displayedTitle}
+        {displayedSubtitle.length === 0 && (
+          <span
+            className={twMerge(
+              "text-primary ml-0.5",
+              isComplete && "animate-blink",
+            )}
+          >
+            |
+          </span>
+        )}
+      </h2>
+
+      {subtitle.length > 0 && (
+        <h3 className="text-xl lg:text-3xl">
+          {displayedSubtitle.length > 0 ? displayedSubtitle : "\u00A0"}
+          {displayedSubtitle.length > 0 && (
+            <span
+              className={twMerge(
+                "text-primary ml-0.5",
+                isComplete && "animate-blink",
+              )}
+            >
+              |
+            </span>
           )}
-        >
-          |
-        </span>
+        </h3>
       )}
-    </h1>
+    </div>
   );
 };

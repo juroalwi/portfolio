@@ -56,7 +56,7 @@ const skillsData = [
 export const Skills = () => {
   return (
     <div className="w-full max-w-300">
-      <TypedTitle>Core skills</TypedTitle>
+      <TypedTitle title="Core Skills" />
       <ul className="list-unstyled grid w-full grid-cols-4 grid-rows-2 gap-x-8 gap-y-4 min-[400px]:grid-cols-5 sm:gap-x-16 sm:gap-y-8">
         {skillsData.map(({ name, img }, index) => (
           <FadeIn
