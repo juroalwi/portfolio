@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { ScreenSizeProvider } from "./providers/screen-size-provider";
+import { PopupProvider } from "./providers/popup-provider";
 import { App } from "./App";
 import "./index.css";
 
@@ -8,6 +10,10 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ScreenSizeProvider>
+      <PopupProvider>
+        <App />
+      </PopupProvider>
+    </ScreenSizeProvider>
   </React.StrictMode>,
 );

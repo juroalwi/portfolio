@@ -1,22 +1,23 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { IconProps } from "types/";
-import { useScreenSize } from "hooks/useScreenSize";
 
 type Props = {
   sections: {
-    name: string;
-    component: () => ReactNode;
-    icon: (props: IconProps) => ReactNode;
+    Icon: (props: IconProps) => ReactNode;
   }[];
+  currentSection: number;
+  setCurrentSection: (cb: ((prev: number) => number) | number) => void;
+  disabled: boolean;
 };
 
-export const SideNavigation = ({ sections }: Props) => {
-  const { screenHeight, isSmallScreen } = useScreenSize();
-  const [currentSection, setCurrentSection] = useState(0);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+export const SideNavigation = ({
+  sections,
+  currentSection,
+  setCurrentSection,
+  disabled,
+}: Props) => {
   const isScrolling = useRef(false);
-  const disabled = isSmallScreen || screenHeight < 600;
 
   useEffect(() => {
     if (disabled) return;
@@ -42,78 +43,37 @@ export const SideNavigation = ({ sections }: Props) => {
     return () => window.removeEventListener("wheel", handleWheel);
   }, [currentSection, disabled, sections.length]);
 
-  useEffect(() => {
-    if (disabled) return;
-
-    if (containerRef.current) {
-      containerRef.current.scrollTo({
-        top: currentSection * screenHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [currentSection, disabled, screenHeight]);
-
-  const handleSidebarClick = (index: number) => {
+  const handleIconClick = (index: number) => {
     setCurrentSection(index);
   };
 
   return (
-    <div className="flex">
-      <div
-        className={
-          disabled
-            ? "hidden"
-            : "flex max-h-[1000px] flex-col gap-16 self-center p-4"
-        }
-      >
-        {sections.map((section, index) => {
-          const Icon = section.icon;
-          return (
-            <button
-              className="group h-full cursor-pointer p-4 outline-none"
-              key={`section-button-${index}`}
-              onClick={() => handleSidebarClick(index)}
-              aria-label={section.name}
-            >
-              <Icon
-                className={twMerge(
-                  "transiton-all h-8 w-8 duration-200",
-                  currentSection === index
-                    ? "stroke-primary translate-x-2 scale-150"
-                    : "stroke-dark group-hover:scale-125",
-                )}
-              />
-            </button>
-          );
-        })}
-      </div>
-
-      <div
-        ref={(el) => {
-          containerRef.current = el;
-        }}
-        className={twMerge(
-          "no-scrollbar w-full",
-          disabled
-            ? "h-auto space-y-20 overflow-y-auto"
-            : "h-screen space-y-0 overflow-y-hidden",
-        )}
-      >
-        {sections.map((section, index) => {
-          const Component = section.component;
-          return (
-            <div
-              key={`section-${index}`}
+    <div
+      className={
+        disabled
+          ? "hidden"
+          : "flex max-h-[1000px] flex-col gap-16 self-center p-4"
+      }
+    >
+      {sections.map((section, index) => {
+        const { Icon } = section;
+        return (
+          <button
+            className="group h-full cursor-pointer p-4 outline-none"
+            key={`section-button-${index}`}
+            onClick={() => handleIconClick(index)}
+          >
+            <Icon
               className={twMerge(
-                "flex items-center justify-center",
-                disabled ? "h-auto p-4" : "h-screen p-10",
+                "transiton-all h-8 w-8 duration-200",
+                currentSection === index
+                  ? "stroke-primary translate-x-2 scale-150"
+                  : "stroke-dark group-hover:scale-125",
               )}
-            >
-              <Component />
-            </div>
-          );
-        })}
-      </div>
+            />
+          </button>
+        );
+      })}
     </div>
   );
 };

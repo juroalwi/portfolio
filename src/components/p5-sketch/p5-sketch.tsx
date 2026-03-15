@@ -3,10 +3,9 @@ import { useEffect, useRef } from "react";
 
 interface P5SketchProps {
   sketch: (p: p5) => void;
-  className?: string;
 }
 
-export const P5Sketch = ({ sketch, className }: P5SketchProps) => {
+export const P5Sketch = ({ sketch }: P5SketchProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -21,5 +20,5 @@ export const P5Sketch = ({ sketch, className }: P5SketchProps) => {
     };
   }, [sketch]);
 
-  return <div ref={containerRef} className={className}></div>;
+  return <div className="fixed inset-0" ref={containerRef}></div>;
 };

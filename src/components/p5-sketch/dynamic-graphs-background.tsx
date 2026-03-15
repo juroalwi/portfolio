@@ -1,5 +1,5 @@
 import p5 from "p5";
-import { useScreenSize } from "/hooks/useScreenSize";
+import { memo } from "react";
 import { P5Sketch } from "./p5-sketch";
 
 type Dot = {
@@ -117,14 +117,10 @@ const createSketch = () => (p: p5) => {
   };
 };
 
-export const DynamicGraphsBackground = ({
-  className,
-}: {
-  className?: string;
-}) => {
-  const { isSmallScreen } = useScreenSize();
+export const DynamicGraphsBackground = memo(
+  ({ disabled = false }: { disabled?: boolean }) => {
+    if (disabled) return null;
 
-  if (isSmallScreen) return null;
-
-  return <P5Sketch sketch={createSketch()} className={className} />;
-};
+    return <P5Sketch sketch={createSketch()} />;
+  },
+);
