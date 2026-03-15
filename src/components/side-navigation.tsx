@@ -8,19 +8,19 @@ type Props = {
   }[];
   currentSection: number;
   setCurrentSection: (cb: ((prev: number) => number) | number) => void;
-  disabled: boolean;
+  isDisabled: boolean;
 };
 
 export const SideNavigation = ({
   sections,
   currentSection,
   setCurrentSection,
-  disabled,
+  isDisabled,
 }: Props) => {
   const isScrolling = useRef(false);
 
   useEffect(() => {
-    if (disabled) return;
+    if (isDisabled) return;
 
     const handleWheel = (e: WheelEvent) => {
       if (isScrolling.current) return;
@@ -41,7 +41,7 @@ export const SideNavigation = ({
     window.addEventListener("wheel", handleWheel);
 
     return () => window.removeEventListener("wheel", handleWheel);
-  }, [currentSection, disabled, sections.length]);
+  }, [currentSection, isDisabled, sections.length]);
 
   const handleIconClick = (index: number) => {
     setCurrentSection(index);
@@ -50,7 +50,7 @@ export const SideNavigation = ({
   return (
     <div
       className={
-        disabled
+        isDisabled
           ? "hidden"
           : "flex max-h-[1000px] flex-col gap-16 self-center p-4"
       }

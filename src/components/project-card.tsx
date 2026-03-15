@@ -7,7 +7,7 @@ type ProjectCardProps = {
   url: string;
   description: string;
   textClassName?: string;
-  big?: boolean;
+  isBig?: boolean;
 };
 
 export const ProjectCard = ({
@@ -17,7 +17,7 @@ export const ProjectCard = ({
   url,
   description,
   textClassName,
-  big,
+  isBig,
 }: ProjectCardProps) => {
   return (
     <div
@@ -45,7 +45,7 @@ export const ProjectCard = ({
         <h3
           className={twMerge(
             "font-[Bebas_Neue] text-lg font-bold tracking-wider uppercase lg:text-2xl",
-            big && "scale-y-110 text-2xl lg:text-5xl",
+            isBig && "scale-y-110 text-2xl lg:text-5xl",
           )}
         >
           {name}
@@ -53,7 +53,7 @@ export const ProjectCard = ({
         <p
           className={twMerge(
             "line-clamp-3 text-sm leading-relaxed opacity-90 lg:text-base",
-            big && "text-lg",
+            isBig && "text-lg",
           )}
         >
           {description}

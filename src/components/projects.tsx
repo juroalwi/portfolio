@@ -117,7 +117,7 @@ const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
               img={projects[0].img}
               description={projects[0].description}
               url={projects[0].url}
-              big
+              isBig
             />
           </FadeIn>
         </div>

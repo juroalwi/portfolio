@@ -51,7 +51,7 @@ export const App = () => {
           sections={sections.map((s) => ({ Icon: s.Icon }))}
           currentSection={currentSection}
           setCurrentSection={setCurrentSection}
-          disabled={isRegularScroll}
+          isDisabled={isRegularScroll}
         />
 
         <div
