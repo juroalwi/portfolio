@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import { FadeIn } from "components/fade-in";
+import { FadeIn } from "/components/fade-in";
 
 type Props = {
   message: string;

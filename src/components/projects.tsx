@@ -1,11 +1,11 @@
 import { useScreenSize } from "/hooks/useScreenSize";
-import { FadeIn } from "components/fade-in";
-import { ProjectCard } from "components/project-card";
-import { TypedTitle } from "components/typed-title/typed-title";
-import weatherAppImg from "assets/images/weather-app.svg";
-import cookEmAllImg from "assets/images/cook-em-all.svg";
-import schoolsLicitationImg from "assets/images/schools-licitation.png";
-import femImg from "assets/images/fem.png";
+import { FadeIn } from "/components/fade-in";
+import { ProjectCard } from "/components/project-card";
+import { TypedTitle } from "/components/typed-title";
+import weatherAppImg from "/assets/images/weather-app.svg";
+import cookEmAllImg from "/assets/images/cook-em-all.svg";
+import schoolsLicitationImg from "/assets/images/schools-licitation.png";
+import femImg from "/assets/images/fem.png";
 
 type ProjectData = {
   name: string;
@@ -49,62 +49,9 @@ export const Projects = () => {
   const { isSmallScreen } = useScreenSize();
 
   if (isSmallScreen) {
-    return <SmallProjects projects={projects} />;
+    return <ProjectsMobile projects={projects} />;
   }
 
-  return <BigProjects projects={projects} />;
-};
-
-const SmallProjects = ({ projects }: { projects: ProjectData[] }) => {
-  return (
-    <div className="flex w-full flex-col items-start justify-center">
-      <TypedTitle title="Recent projects" />
-      <div className="flex w-full flex-col gap-16">
-        <FadeIn from="left">
-          <ProjectCard
-            id="project-0"
-            name={projects[0].name}
-            img={projects[0].img}
-            description={projects[0].description}
-            url={projects[0].url}
-          />
-        </FadeIn>
-
-        <FadeIn from="right">
-          <ProjectCard
-            id="project-1"
-            name={projects[1].name}
-            img={projects[1].img}
-            description={projects[1].description}
-            url={projects[1].url}
-          />
-        </FadeIn>
-
-        <FadeIn from="left">
-          <ProjectCard
-            id="project-2"
-            name={projects[2].name}
-            img={projects[2].img}
-            description={projects[2].description}
-            url={projects[2].url}
-          />
-        </FadeIn>
-
-        <FadeIn from="right">
-          <ProjectCard
-            id="project-3"
-            name={projects[3].name}
-            img={projects[3].img}
-            description={projects[3].description}
-            url={projects[3].url}
-          />
-        </FadeIn>
-      </div>
-    </div>
-  );
-};
-
-const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
   return (
     <div className="flex h-full max-h-250 w-full max-w-350 flex-col items-start justify-center">
       <TypedTitle title="Recent projects" />
@@ -157,6 +104,55 @@ const BigProjects = ({ projects }: { projects: ProjectData[] }) => {
             />
           </FadeIn>
         </div>
+      </div>
+    </div>
+  );
+};
+
+const ProjectsMobile = ({ projects }: { projects: ProjectData[] }) => {
+  return (
+    <div className="flex w-full flex-col items-start justify-center">
+      <TypedTitle title="Recent projects" />
+      <div className="flex w-full flex-col gap-16">
+        <FadeIn from="left">
+          <ProjectCard
+            id="project-0"
+            name={projects[0].name}
+            img={projects[0].img}
+            description={projects[0].description}
+            url={projects[0].url}
+          />
+        </FadeIn>
+
+        <FadeIn from="right">
+          <ProjectCard
+            id="project-1"
+            name={projects[1].name}
+            img={projects[1].img}
+            description={projects[1].description}
+            url={projects[1].url}
+          />
+        </FadeIn>
+
+        <FadeIn from="left">
+          <ProjectCard
+            id="project-2"
+            name={projects[2].name}
+            img={projects[2].img}
+            description={projects[2].description}
+            url={projects[2].url}
+          />
+        </FadeIn>
+
+        <FadeIn from="right">
+          <ProjectCard
+            id="project-3"
+            name={projects[3].name}
+            img={projects[3].img}
+            description={projects[3].description}
+            url={projects[3].url}
+          />
+        </FadeIn>
       </div>
     </div>
   );

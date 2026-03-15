@@ -1,9 +1,8 @@
 import { defineConfig } from "vite";
+import { existsSync } from "fs";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-
-import { existsSync } from "fs";
 
 // Plugin to handle all imports from src/ (both /path and path)
 const srcAliasPlugin = () => {

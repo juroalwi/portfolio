@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { usePopup } from "hooks/use-popup";
-import { Spinner } from "components/spinner";
-import { FadeIn } from "components/fade-in";
-import { TypedTitle } from "components/typed-title/typed-title";
+import { usePopup } from "/hooks/use-popup";
+import { Spinner } from "/components/spinner";
+import { FadeIn } from "/components/fade-in";
+import { TypedTitle } from "/components/typed-title";
 
 export const Contact = () => {
   const { open } = usePopup();

@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useRef } from "react";
 import { twMerge } from "tailwind-merge";
-import { IconProps } from "types/";
+import { IconProps } from "/types";
 
 type Props = {
   sections: {

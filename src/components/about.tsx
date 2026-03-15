@@ -1,6 +1,6 @@
-import { TypedTitle } from "components/typed-title/typed-title";
-import { FadeIn } from "components/fade-in";
-import poi from "assets/images/poi.webp";
+import { TypedTitle } from "components/typed-title";
+import { FadeIn } from "/components/fade-in";
+import poi from "/assets/images/poi.webp";
 
 export const About = () => {
   return (
