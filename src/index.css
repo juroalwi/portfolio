@@ -14,21 +14,6 @@ body {
     background-color: var(--color-light);
 }
 
-@layer utilities {
-    .no-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
-    .no-scrollbar {
-        -ms-overflow-style: none; /* IE and Edge */
-        scrollbar-width: none; /* Firefox */
-    }
-
-    input:-webkit-autofill {
-        box-shadow: 0 0 0px 1000px theme("colors.white") inset;
-        -webkit-text-fill-color: theme("colors.gray.900");
-    }
-}
-
 @theme {
     --color-dark: #393e46;
     --color-primary: #ff6b66;
@@ -46,5 +31,20 @@ body {
         100% {
             opacity: 0;
         }
+    }
+}
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+
+    input:-webkit-autofill {
+        box-shadow: 0 0 0px 1000px theme("colors.white") inset;
+        -webkit-text-fill-color: theme("colors.gray.900");
     }
 }

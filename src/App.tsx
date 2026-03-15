@@ -18,7 +18,7 @@ const sections = [
   { name: "Contact", component: Contact, icon: SendIcon },
 ];
 
-function App() {
+export const App = () => {
   return (
     <ScreenSizeProvider>
       <PopupProvider>
@@ -32,6 +32,4 @@ function App() {
       </PopupProvider>
     </ScreenSizeProvider>
   );
-}
-
-export default App;
+};
