@@ -103,7 +103,7 @@ export const Contact = () => {
           type="submit"
           disabled={isSubmitting}
           className={twMerge(
-            "bg-dark text-light mt-2 ml-auto flex h-12 w-28 items-center justify-center rounded-full font-medium transition-all duration-200 outline-none",
+            "bg-dark text-light ml-auto flex items-center justify-center rounded-full px-6 py-2 text-sm font-medium transition-all duration-200 outline-none lg:px-9 lg:py-3 lg:text-base",
             isSubmitting
               ? "bg-dark/90 cursor-not-allowed"
               : "hover:bg-dark/90 cursor-pointer",
