@@ -11,6 +11,7 @@ import { WrenchIcon } from "/assets/icons/WrenchIcon";
 import { HouseIcon } from "/assets/icons/HouseIcon";
 import { PortfolioIcon } from "/assets/icons/PortfolioIcon";
 import { SendIcon } from "/assets/icons/SendIcon";
+import { ExternalLinks } from "./components/ExternalLinks";
 
 const sections = [
   { name: "About", Component: About, Icon: HouseIcon },
@@ -41,6 +42,10 @@ export const App = () => {
       <DynamicGraphsBackground disabled={isSmallScreen} />
 
       <div className="fixed inset-0 backdrop-blur-[0.0625rem]" />
+
+      <div className="fixed top-4 right-4 z-1">
+        <ExternalLinks />
+      </div>
 
       <div
         className={twMerge(
