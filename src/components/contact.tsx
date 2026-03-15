@@ -55,7 +55,7 @@ export const Contact = () => {
   };
 
   return (
-    <div className="xs:text-sm w-full max-w-300">
+    <div className="w-full max-w-300">
       <TypedTitle title="Want to know more? Reach out!" />
 
       <form className="flex flex-col gap-8" onSubmit={handleSubmit}>
@@ -143,8 +143,8 @@ const FormField = ({
   const labelClasses = [
     "absolute left-0 h-auto transition-all duration-300 pointer-events-none",
     isFocused || hasValue
-      ? "translate-y-[-30px] text-sm text-secondary/90"
-      : "translate-y-0 text-base text-dark/60",
+      ? "translate-y-[-30px] text-xs lg:text-sm text-secondary/90"
+      : "translate-y-0 text-sm lg:text-base text-dark/60",
   ];
 
   if (isTextArea) {

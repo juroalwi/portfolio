@@ -81,7 +81,7 @@ export const TypedTitle = ({
         className,
       )}
     >
-      <h2 ref={containerRef} className="text-4xl lg:text-5xl">
+      <h2 ref={containerRef} className="text-2xl lg:text-5xl">
         {displayedTitle}
         {displayedSubtitle.length === 0 && (
           <span
@@ -96,7 +96,7 @@ export const TypedTitle = ({
       </h2>
 
       {subtitle.length > 0 && (
-        <h3 className="text-xl lg:text-3xl">
+        <h3 className="text-lg lg:text-3xl">
           {displayedSubtitle.length > 0 ? displayedSubtitle : "\u00A0"}
           {displayedSubtitle.length > 0 && (
             <span

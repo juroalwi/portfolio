@@ -44,15 +44,15 @@ export const ProjectCard = ({
       >
         <h3
           className={twMerge(
-            "font-[Bebas_Neue] text-2xl font-bold tracking-wider uppercase",
-            big && "scale-y-110 text-5xl",
+            "font-[Bebas_Neue] text-lg font-bold tracking-wider uppercase lg:text-2xl",
+            big && "scale-y-110 text-2xl lg:text-5xl",
           )}
         >
           {name}
         </h3>
         <p
           className={twMerge(
-            "line-clamp-3 text-sm leading-relaxed opacity-90",
+            "line-clamp-3 text-sm leading-relaxed opacity-90 lg:text-base",
             big && "text-lg",
           )}
         >
