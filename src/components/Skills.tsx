@@ -1,5 +1,5 @@
-import { TypedTitle } from "/components/typed-title";
-import { FadeIn } from "/components/fade-in";
+import { TypedTitle } from "/components/TypedTitle";
+import { FadeIn } from "./FadeIn";
 import typescript from "/assets/images/typescript.svg";
 import nodejs from "/assets/images/nodejs.svg";
 import nestjs from "/assets/images/nestjs.svg";

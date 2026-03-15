@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useScreenSize } from "/hooks/useScreenSize";
-import { Skills } from "/components/skills";
-import { About } from "/components/about";
-import { Contact } from "/components/contact";
-import { Projects } from "/components/projects";
-import { DynamicGraphsBackground } from "/components/p5-sketch/dynamic-graphs-background";
-import { SideNavigation } from "/components/side-navigation";
+import { Skills } from "/components/Skills";
+import { About } from "/components/About";
+import { Contact } from "/components/Contact";
+import { Projects } from "/components/Projects";
+import { DynamicGraphsBackground } from "/components/p5-sketch/DynamicGraphsBackground";
+import { SideNavigation } from "/components/SideNavigation";
 import { WrenchIcon } from "/assets/icons/WrenchIcon";
 import { HouseIcon } from "/assets/icons/HouseIcon";
 import { PortfolioIcon } from "/assets/icons/PortfolioIcon";

@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ScreenSizeProvider } from "/providers/screen-size-provider";
-import { PopupProvider } from "/providers/popup-provider";
-import { App } from "/App";
-import "/index.css";
+import { ScreenSizeProvider } from "/providers/ScreenSizeProvider";
+import { PopupProvider } from "/providers/PopupProvider";
+import { App } from "./App";
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,

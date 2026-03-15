@@ -1,7 +1,7 @@
 import { useScreenSize } from "/hooks/useScreenSize";
-import { FadeIn } from "/components/fade-in";
-import { ProjectCard } from "/components/project-card";
-import { TypedTitle } from "/components/typed-title";
+import { FadeIn } from "/components/FadeIn";
+import { ProjectCard } from "/components/ProjectCard";
+import { TypedTitle } from "/components/TypedTitle";
 import weatherAppImg from "/assets/images/weather-app.svg";
 import cookEmAllImg from "/assets/images/cook-em-all.svg";
 import schoolsLicitationImg from "/assets/images/schools-licitation.png";
