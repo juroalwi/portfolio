@@ -8,7 +8,7 @@ export const About = () => {
       <div>
         <TypedTitle
           title="Hi there, this is Julian"
-          subtitle="Full stack engineer & Mathematician"
+          subtitle="Backend Engineer & Mathematician"
           typingSpeedMs={40}
           className="mb-4 flex flex-col text-center lg:mb-4 lg:text-left"
         />
